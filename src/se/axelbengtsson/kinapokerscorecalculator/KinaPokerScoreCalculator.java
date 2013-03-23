@@ -2,8 +2,11 @@ package se.axelbengtsson.kinapokerscorecalculator;
 import java.util.LinkedList;
 import java.util.List;
 
-
-
+/**
+ * Class for calculate score
+ * @author Axel Bengtsson
+ *
+ */
 public class KinaPokerScoreCalculator {
   public final static int YOU = 0;
 
@@ -67,9 +70,20 @@ public class KinaPokerScoreCalculator {
     this.negativeBonus = new LinkedList<KinaPokerScoreCalculator.Bonus>();
   }
 
+  /**
+   * Singleton method to create to create a new instance
+   * @param numberOfPlayers
+   * @return
+   */
   public static KinaPokerScoreCalculator create(int numberOfPlayers) {
     return new KinaPokerScoreCalculator(numberOfPlayers);
   }
+
+  /**
+   * Set the score of different hands by setting the place.
+   * @param hand - hand (just for log)
+   * @param place - The place
+   */
   public void setPlaceOfHand(final Hand hand, final int place) {
     if (place > 0 && place <= numberOfPlayer) {
       switch(hand) {
@@ -113,10 +127,20 @@ public class KinaPokerScoreCalculator {
     }
     sum = s;
   }
+
+  /**
+   * @return - the number of players that play - YOU
+   */
   public int getNumberOfPlayerThatPlay() {
-  return getNumberOfPlayerThatPlay(0);
+    return getNumberOfPlayerThatPlay(0);
   }
-    public int getNumberOfPlayerThatPlay(final int startAt) {
+
+  /**
+   * Number of player that play
+   * @param startAt (if 0 then including you)
+   * @return
+   */
+  public int getNumberOfPlayerThatPlay(final int startAt) {
     int sum = 0;
     for (int i = startAt; i < gameType.length; i++) {
       if (gameType[i] == GameType.Play) {
@@ -125,14 +149,19 @@ public class KinaPokerScoreCalculator {
     }
     return sum;
   }
-//Setter
+
+  /**
+   * Set game type for player
+   * @param player
+   * @param type
+   */
   public void setGamePlay(int player, GameType type) {
     if (player < numberOfPlayer) {
       gameType[player] = type;
       calculateSum();
     }
   }
-
+//TODO refactoring this to use index of players intead of two methods YOU/Opponents
   public void setBonusYou(Hand hand, Bonus bonus) {
     positiveBonus.add(bonus);
     calculateSum();
@@ -150,12 +179,23 @@ public class KinaPokerScoreCalculator {
     calculateSum();
   }
 //Getter
+  /**
+   * @return number of players
+   */
   public int getNumberOfPlayer() {
     return this.numberOfPlayer;
   }
+
+  /**
+   * @return - current score sum
+   */
   public int getSum() {
     return this.sum;
   }
+
+  /**
+   * @return - true if YOU game type is play
+   */
   public boolean areYouPlaying() {
     return gameType[YOU] == GameType.Play;
   }

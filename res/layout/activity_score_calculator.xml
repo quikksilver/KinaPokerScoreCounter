@@ -148,28 +148,28 @@
                         android:id="@+id/hand1_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:onClick="onCheckboxClickedHand1"
+                        android:onClick="onCheckboxClickedHand"
                         android:text="@string/one" />
 
                     <RadioButton
                         android:id="@+id/hand1_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:onClick="onCheckboxClickedHand1"
+                        android:onClick="onCheckboxClickedHand"
                         android:text="@string/two" />
 
                     <RadioButton
                         android:id="@+id/hand1_3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:onClick="onCheckboxClickedHand1"
+                        android:onClick="onCheckboxClickedHand"
                         android:text="@string/three" />
 
                     <RadioButton
                         android:id="@+id/hand1_4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:onClick="onCheckboxClickedHand1"
+                        android:onClick="onCheckboxClickedHand"
                         android:text="@string/four" />
                 </RadioGroup>
 
@@ -236,28 +236,28 @@
                         android:id="@+id/hand2_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:onClick="onCheckboxClickedHand2"
+                        android:onClick="onCheckboxClickedHand"
                         android:text="@string/one" />
 
                     <RadioButton
                         android:id="@+id/hand2_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:onClick="onCheckboxClickedHand2"
+                        android:onClick="onCheckboxClickedHand"
                         android:text="@string/two" />
 
                     <RadioButton
                         android:id="@+id/hand2_3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:onClick="onCheckboxClickedHand2"
+                        android:onClick="onCheckboxClickedHand"
                         android:text="@string/three" />
 
                     <RadioButton
                         android:id="@+id/hand2_4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:onClick="onCheckboxClickedHand2"
+                        android:onClick="onCheckboxClickedHand"
                         android:text="@string/four" />
                 </RadioGroup>
                 <!-- Bonus 2 -->
@@ -406,28 +406,28 @@
                         android:id="@+id/hand3_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:onClick="onCheckboxClickedHand3"
+                        android:onClick="onCheckboxClickedHand"
                         android:text="@string/one" />
 
                     <RadioButton
                         android:id="@+id/hand3_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:onClick="onCheckboxClickedHand3"
+                        android:onClick="onCheckboxClickedHand"
                         android:text="@string/two" />
 
                     <RadioButton
                         android:id="@+id/hand3_3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:onClick="onCheckboxClickedHand3"
+                        android:onClick="onCheckboxClickedHand"
                         android:text="@string/three" />
 
                     <RadioButton
                         android:id="@+id/hand3_4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:onClick="onCheckboxClickedHand3"
+                        android:onClick="onCheckboxClickedHand"
                         android:text="@string/four" />
                 </RadioGroup>
 
