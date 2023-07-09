@@ -28,7 +28,8 @@ class KinaPoker(numberOfPlayers: Int): KinapokerInterface {
         val filterAllExceptSelfAndPlaying:(PlayerRound)->Boolean= {pr -> pr.player != p.player && pr.playType == PlayType.Play }
 
         // Add Bonus to all others (if NotPlay) and to only playing for all else
-        round.playerRound.filter(if ( p.playType == PlayType.NotPlay) {filterAllExceptSelf} else {filterAllExceptSelfAndPlaying})
+        round.playerRound
+          .filter(if ( p.playType == PlayType.NotPlay) {filterAllExceptSelf} else {filterAllExceptSelfAndPlaying})
           .forEach { p2 ->
             p2.bonus.add((Triple(p.player, p.playType!!.bonusType, Hand.PlayType)))
           }
@@ -53,11 +54,11 @@ class KinaPoker(numberOfPlayers: Int): KinapokerInterface {
   }
 
   override fun isAllPlayersPlaceSet(hand: Hand): Boolean {
-    return round.playerRound.none { it.hands[hand] != null }
+    return round.playerRound.none { it.hands[hand] == null }
   }
 
   override fun isRoundComplete():Boolean {
-    return isAllPlayersPlaceSet(Hand.Hand_3) && isAllPlayersPlaceSet(Hand.Hand_2) && isAllPlayersPlaceSet(Hand.Hand_1)
+    return isAllPlayersPlaceSet(Hand.Hand3) && isAllPlayersPlaceSet(Hand.Hand2) && isAllPlayersPlaceSet(Hand.Hand1)
   }
 
   override fun setRoundComplete() {
@@ -80,8 +81,11 @@ class KinaPoker(numberOfPlayers: Int): KinapokerInterface {
   private fun calcScore() {
     //Bonus
     round.playerRound.forEach { player ->
+      // clear all scores
+      player.totalscore = 0
       // Own Bonus
-      player.totalscore += player.bonus.filter { it.first == player.player }
+      player.totalscore += player.bonus
+        .filter { it.first == player.player }
         .map { bonus ->
           when (bonus.second) {
             BonusType.NotPlay -> bonus.second.points * (numberOfPlayers - 1)
@@ -90,11 +94,22 @@ class KinaPoker(numberOfPlayers: Int): KinapokerInterface {
         }
         .fold(0) {acc , b -> acc + b}
       // Opponents Bonus
-      player.totalscore += player.bonus.filter { it.first != player.player }
+      player.totalscore += player.bonus
+        .filter { it.first != player.player }
         .map { it.second.points }
         .fold(0) {acc , b -> acc + b * -1}
-
     }
-    //place
+    //Place
+    val numberThatPlay = round.playerRound
+      .filter { it.playType == PlayType.Play }.size
+    arrayOf(Hand.Hand1, Hand.Hand2, Hand.Hand3)
+      .filter { isAllPlayersPlaceSet(it) }
+      .forEach { hand ->
+        round.playerRound
+          .filter { it.playType == PlayType.Play }
+          .forEach { player ->
+            player.totalscore += PlaceScore.placePoints[numberThatPlay - 1][player.hands[hand]!! - 1]
+          }
+      }
   }
 }

@@ -1,8 +1,8 @@
 package se.axel.bengtsson.kinapokerscorecalculator
 
 enum class Hand {
-  Hand_1,
-  Hand_2,
-  Hand_3,
+  Hand1,
+  Hand2,
+  Hand3,
   PlayType
 }
