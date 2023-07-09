@@ -1,7 +1,5 @@
 package se.axel.bengtsson.kinapokerscorecalculator
 
-import se.axel.bengtsson.kinapokerscorecalculator.BonusType
-
 /**
  * Each round the player choose the playType
  */

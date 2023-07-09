@@ -14,6 +14,6 @@ class Round(val numberOfPlayers: Int) {
     }
     // Initiate
     players = Player.values().filter { player -> player.isPlaying(numberOfPlayers) }.toTypedArray()
-    playerRound = players.map { it -> PlayerRound(it) }.toTypedArray()
+    playerRound = players.map { PlayerRound(it) }.toTypedArray()
   }
 }

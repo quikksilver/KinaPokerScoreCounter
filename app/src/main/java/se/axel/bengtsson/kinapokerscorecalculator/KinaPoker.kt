@@ -1,31 +1,37 @@
 package se.axel.bengtsson.kinapokerscorecalculator
 
 class KinaPoker(numberOfPlayers: Int): KinapokerInterface {
-  val round:Round;
-  private val numberOfPlayers:Int;
-  private var playTypeLocked:Boolean;
+  val round:Round
+  private val numberOfPlayers:Int
+  private var playTypeLocked:Boolean
   init {
-    this.round = Round(numberOfPlayers);
-    this.numberOfPlayers = numberOfPlayers;
-    this.playTypeLocked = false;
+    this.round = Round(numberOfPlayers)
+    this.numberOfPlayers = numberOfPlayers
+    this.playTypeLocked = false
   }
 
   override fun setPlayersPlayType(player: Player, playType: PlayType) {
     if (!playTypeLocked) {
-      round.playerRound[player.index(this.numberOfPlayers)].playType = playType;
+      round.playerRound[player.index(this.numberOfPlayers)].playType = playType
     } else {
       throw RuntimeException("Play type is locked")
     }
     if (isAllPlayersPlayTypeSet()) {
-      playTypeLocked = true;
+      playTypeLocked = true
       // Set Bonus on play type.
-      round.playerRound.filter { it.playType == PlayType.NotPlay }.forEach { p ->
+      // Not Play should always add to all.
+      round.playerRound.forEach { p ->
         // Add Bonus to it self
-        p.bonus.add((p.player to p.playType?.bonusType) as Pair<Player, BonusType>);
-        // Add Bonus to all others
-        round.playerRound.filter { it.player != p.player }.forEach { p2 ->
-          p2.bonus.add((p.player to p.playType?.bonusType) as Pair<Player, BonusType>);
-        }
+        p.bonus.add((Triple(p.player, p.playType!!.bonusType, Hand.PlayType)))
+
+        val filterAllExceptSelf:(PlayerRound)->Boolean= {pr -> pr.player != p.player}
+        val filterAllExceptSelfAndPlaying:(PlayerRound)->Boolean= {pr -> pr.player != p.player && pr.playType == PlayType.Play }
+
+        // Add Bonus to all others (if NotPlay) and to only playing for all else
+        round.playerRound.filter(if ( p.playType == PlayType.NotPlay) {filterAllExceptSelf} else {filterAllExceptSelfAndPlaying})
+          .forEach { p2 ->
+            p2.bonus.add((Triple(p.player, p.playType!!.bonusType, Hand.PlayType)))
+          }
       }
       calcScore()
     }
@@ -37,34 +43,54 @@ class KinaPoker(numberOfPlayers: Int): KinapokerInterface {
 
   override fun setPlayersPlace(player: Player, hand: Hand, place: Int) {
     if (round.playerRound[player.index(numberOfPlayers)].hands.containsKey(hand)) {
-      round.playerRound[player.index(numberOfPlayers)].hands[hand] = place;
+      round.playerRound[player.index(numberOfPlayers)].hands[hand] = place
+      if (isAllPlayersPlaceSet(hand)) {
+        calcScore()
+      }
     } else {
-      throw RuntimeException("Wrong hand: $hand");
+      throw RuntimeException("Wrong hand: $hand")
+    }
+  }
+
+  override fun isAllPlayersPlaceSet(hand: Hand): Boolean {
+    return round.playerRound.none { it.hands[hand] != null }
+  }
+
+  override fun isRoundComplete():Boolean {
+    return isAllPlayersPlaceSet(Hand.Hand_3) && isAllPlayersPlaceSet(Hand.Hand_2) && isAllPlayersPlaceSet(Hand.Hand_1)
+  }
+
+  override fun setRoundComplete() {
+    if (isRoundComplete() && isAllPlayersPlayTypeSet()) {
+      // Handle scope...
+      TODO("Not yet implemented")
+    } else {
+      throw RuntimeException("Missing information to complete the round")
     }
   }
 
   override fun setPlayersBonus(player: Player, hand: Hand, bonusType: BonusType) {
-    round.playerRound[player.index(numberOfPlayers)].bonus.add(player to bonusType)
+    round.playerRound[player.index(numberOfPlayers)].bonus.add(Triple(player, bonusType, hand))
   }
 
   override fun setRound(round: Round): Array<Player> {
     TODO("Not yet implemented")
   }
 
-  override fun calcScore() {
+  private fun calcScore() {
     //Bonus
     round.playerRound.forEach { player ->
       // Own Bonus
-      player.totalscore += player.bonus.filter { it -> it.first == player.player }
-        .map {
-          when (it.second) {
-            BonusType.NotPlay -> it.second.points * (numberOfPlayers - 1)
-            else -> it.second.points
+      player.totalscore += player.bonus.filter { it.first == player.player }
+        .map { bonus ->
+          when (bonus.second) {
+            BonusType.NotPlay -> bonus.second.points * (numberOfPlayers - 1)
+            else -> bonus.second.points * round.playerRound.filter { it.player != player.player && it.playType == PlayType.Play}.size
           }
         }
         .fold(0) {acc , b -> acc + b}
       // Opponents Bonus
-      player.totalscore += player.bonus.filter { it -> it.first != player.player }
+      player.totalscore += player.bonus.filter { it.first != player.player }
         .map { it.second.points }
         .fold(0) {acc , b -> acc + b * -1}
 

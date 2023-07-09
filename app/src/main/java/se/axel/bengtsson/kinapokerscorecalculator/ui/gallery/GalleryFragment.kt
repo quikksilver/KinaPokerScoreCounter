@@ -1,6 +1,5 @@
 package se.axel.bengtsson.kinapokerscorecalculator.ui.gallery
 
-import se.axel.bengtsson.kinapokerscorecalculator.ui.gallery.GalleryViewModel
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

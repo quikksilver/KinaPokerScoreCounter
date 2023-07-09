@@ -1,12 +1,12 @@
 package se.axel.bengtsson.kinapokerscorecalculator
 
-import se.axel.bengtsson.kinapokerscorecalculator.BonusType
-
 interface KinapokerInterface {
     fun setPlayersPlayType(player: Player, playType: PlayType)
     fun isAllPlayersPlayTypeSet():Boolean
     fun setPlayersPlace(player: Player, hand: Hand, place: Int)
+    fun isAllPlayersPlaceSet(hand: Hand):Boolean
     fun setPlayersBonus(player: Player, hand: Hand, bonusType: BonusType)
+    fun isRoundComplete():Boolean
+    fun setRoundComplete()
     fun setRound(round: Round): Array<Player>
-    fun calcScore()
 }
