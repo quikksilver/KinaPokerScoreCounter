@@ -7,7 +7,47 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
+    <string name="menu_home">KinaPoker</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+
+
+  <!-- From old -->
+  <!-- <string name="app_name">KinaPoker Score Calculator</string>
+  <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string> -->
+
+  <string name="players">Players:</string>
+  <string name="one">1</string>
+  <string name="two">2</string>
+  <string name="three">3</string>
+  <string name="four">4</string>
+  <string name="you">You:</string>
+
+  <string-array name="game_type">
+    <item>Play</item>
+    <item>Not Play</item>
+    <item>Automatic</item>
+    <item>Dragon</item>
+    <item>Color Dragon</item>
+  </string-array>
+
+  <string name="opponent_1">Opponent 1:</string>
+  <string name="opponent_2">Opponent 2:</string>
+  <string name="opponent_3">Opponent 3:</string>
+
+  <string name="hand1">Hand one(3) Place:</string>
+  <string name="hand2">Hand two(5) Place:</string>
+  <string name="hand3">Hand three(5) Place:</string>
+
+  <string name="sum_text">Sum:</string>
+  <string name="zero">0</string>
+  <string name="kind">Kind:</string>
+  <string name="you2">you</string>
+  <string name="fullhouse">Full House:</string>
+  <string name="fourofakind">Four of a kind:</string>
+  <string name="straightflush">Straight Flush:</string>
+  <string name="scoopup_is">Is Scooping Up:</string>
+  <string name="scoopup_by">Been Scooped Up by:</string>
+
 </resources>
