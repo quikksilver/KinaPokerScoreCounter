@@ -65,12 +65,14 @@
         <TextView
           android:id="@+id/you"
           android:layout_width="wrap_content"
+          android:visibility="gone"
           android:layout_height="wrap_content"
           android:text="@string/you" />
 
         <Spinner
           android:id="@+id/you_spinner"
           android:layout_width="fill_parent"
+          android:visibility="gone"
           android:layout_height="wrap_content" />
 
         <!-- Opponent 1 -->
@@ -79,11 +81,13 @@
           android:id="@+id/left"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
+          android:visibility="gone"
           android:text="@string/left" />
 
         <Spinner
           android:id="@+id/left_spinner"
           android:layout_width="fill_parent"
+          android:visibility="gone"
           android:layout_height="wrap_content" />
         <!-- Opponent 2 -->
 
@@ -91,11 +95,13 @@
           android:id="@+id/opposite"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
+          android:visibility="gone"
           android:text="@string/opposite" />
 
         <Spinner
           android:id="@+id/opposite_spinner"
           android:layout_width="fill_parent"
+          android:visibility="gone"
           android:layout_height="wrap_content" />
         <!-- Opponent 3 -->
 
@@ -103,11 +109,13 @@
           android:id="@+id/right"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
+          android:visibility="gone"
           android:text="@string/right" />
 
         <Spinner
           android:id="@+id/right_spinner"
           android:layout_width="fill_parent"
+          android:visibility="gone"
           android:layout_height="wrap_content" />
       </LinearLayout>
       <!-- Hand layout -->

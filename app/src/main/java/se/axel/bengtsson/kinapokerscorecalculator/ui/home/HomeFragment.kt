@@ -77,6 +77,14 @@ class HomeFragment : Fragment() {
       playerText.text = "Players $it"
     }
     // Game Type
+    val youText: TextView = binding.you
+    homeViewModel.kinaPoker.observe(viewLifecycleOwner) {
+      youText.visibility = isVisible(it, Player.You)
+    }
+    val youSpinner: Spinner = binding.youSpinner
+    homeViewModel.kinaPoker.observe(viewLifecycleOwner) {
+      youSpinner.visibility = isVisible(it, Player.You)
+    }
     val leftText: TextView = binding.left
     homeViewModel.kinaPoker.observe(viewLifecycleOwner) {
       leftText.visibility = isVisible(it, Player.Left)
