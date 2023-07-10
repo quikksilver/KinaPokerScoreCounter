@@ -21,7 +21,6 @@
         android:layout_height="wrap_content"
         android:text="@string/players" />
 
-      <!-- xmlns:android="http://schemas.android.com/apk/res/android" -->
 
       <RadioGroup
         android:id="@+id/players_radio"
@@ -29,32 +28,29 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
 
+
         <RadioButton
           android:id="@+id/one"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:onClick="onSelectPlayersButtonClicked"
           android:text="@string/one" />
 
         <RadioButton
           android:id="@+id/two"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:onClick="onSelectPlayersButtonClicked"
           android:text="@string/two" />
 
         <RadioButton
           android:id="@+id/three"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:onClick="onSelectPlayersButtonClicked"
           android:text="@string/three" />
 
         <RadioButton
           android:id="@+id/four"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:onClick="onSelectPlayersButtonClicked"
           android:text="@string/four" />
       </RadioGroup>
 
@@ -80,37 +76,37 @@
         <!-- Opponent 1 -->
 
         <TextView
-          android:id="@+id/opponent_1"
+          android:id="@+id/left"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:text="@string/opponent_1" />
+          android:text="@string/left" />
 
         <Spinner
-          android:id="@+id/opponent_1_spinner"
+          android:id="@+id/left_spinner"
           android:layout_width="fill_parent"
           android:layout_height="wrap_content" />
         <!-- Opponent 2 -->
 
         <TextView
-          android:id="@+id/opponent_2"
+          android:id="@+id/opposite"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:text="@string/opponent_2" />
+          android:text="@string/opposite" />
 
         <Spinner
-          android:id="@+id/opponent_2_spinner"
+          android:id="@+id/opposite_spinner"
           android:layout_width="fill_parent"
           android:layout_height="wrap_content" />
         <!-- Opponent 3 -->
 
         <TextView
-          android:id="@+id/opponent_3"
+          android:id="@+id/right"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:text="@string/opponent_3" />
+          android:text="@string/right" />
 
         <Spinner
-          android:id="@+id/opponent_3_spinner"
+          android:id="@+id/right_spinner"
           android:layout_width="fill_parent"
           android:layout_height="wrap_content" />
       </LinearLayout>

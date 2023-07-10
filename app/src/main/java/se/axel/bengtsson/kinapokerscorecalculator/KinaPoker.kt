@@ -69,6 +69,9 @@ class KinaPoker(numberOfPlayers: Int): KinapokerInterface {
       throw RuntimeException("Missing information to complete the round")
     }
   }
+  fun isPlayerPlaying(player:Player):Boolean {
+    return round.playerRound.any { it.player == player }
+  }
 
   override fun setPlayersBonus(player: Player, hand: Hand, bonusType: BonusType) {
     round.playerRound[player.index(numberOfPlayers)].bonus.add(Triple(player, bonusType, hand))
