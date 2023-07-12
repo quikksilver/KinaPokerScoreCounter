@@ -1,15 +1,12 @@
 package se.axel.bengtsson.kinapokerscorecalculator.ui.home
 
-import android.R
 import android.util.Log
-import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import kotlinx.coroutines.flow.DEFAULT_CONCURRENCY
 import se.axel.bengtsson.kinapokerscorecalculator.KinaPoker
 
-class HomeViewModel : ViewModel() {
+class KinaPokerViewModel : ViewModel() {
 
   private val _numberOfPlayer = MutableLiveData<Int>()
   val numberOfPlayer: LiveData<Int> = _numberOfPlayer

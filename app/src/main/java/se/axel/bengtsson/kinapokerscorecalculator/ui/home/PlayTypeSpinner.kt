@@ -19,7 +19,7 @@ import se.axel.bengtsson.kinapokerscorecalculator.Player
 <item>Color Dragon</item>
  */
 class PlayTypeSpinner(val player: Player,
-                      private val homeViewModel:HomeViewModel,
+                      private val kinaPokerViewModel:KinaPokerViewModel,
                       val context: Context,
                       val spinner: Spinner)
   : Activity(), AdapterView.OnItemSelectedListener {
@@ -54,20 +54,20 @@ class PlayTypeSpinner(val player: Player,
           pos
         )
       )
-    if (homeViewModel.kinaPoker.value != null) {
-      if (homeViewModel.kinaPoker.value?.isPlayerPlaying(player) == true) {
-        homeViewModel.kinaPoker.value?.setPlayersPlayType(player, playTypeArray[id.toInt()])
-        homeViewModel.updateScore();
+    if (kinaPokerViewModel.kinaPoker.value != null) {
+      if (kinaPokerViewModel.kinaPoker.value?.isPlayerPlaying(player) == true) {
+        kinaPokerViewModel.kinaPoker.value?.setPlayersPlayType(player, playTypeArray[id.toInt()])
+        kinaPokerViewModel.updateScore();
       }
     }
   }
 
   fun reset() {
     spinner.setSelection(0)
-    if (homeViewModel.kinaPoker.value != null) {
-      if (homeViewModel.kinaPoker.value?.isPlayerPlaying(player) == true) {
-        homeViewModel.kinaPoker.value?.setPlayersPlayType(player, playTypeArray[0])
-        homeViewModel.updateScore();
+    if (kinaPokerViewModel.kinaPoker.value != null) {
+      if (kinaPokerViewModel.kinaPoker.value?.isPlayerPlaying(player) == true) {
+        kinaPokerViewModel.kinaPoker.value?.setPlayersPlayType(player, playTypeArray[0])
+        kinaPokerViewModel.updateScore();
       }
     }
   }
