@@ -39,7 +39,8 @@ class Hand1Fragment() : Fragment() {
       Player.You,
       kinaPokerViewModel,
       arrayOf(binding.hand1You1, binding.hand1You2, binding.hand1You3, binding.hand1You4),
-      viewLifecycleOwner
+      viewLifecycleOwner,
+      binding.hand1You
     ))
 
     placeChoosers.add(PlaceChooser(
@@ -47,21 +48,24 @@ class Hand1Fragment() : Fragment() {
       Player.Left,
       kinaPokerViewModel,
       arrayOf(binding.hand1Left1, binding.hand1Left2,binding.hand1Left3, binding.hand1Left4 ),
-      viewLifecycleOwner
+      viewLifecycleOwner,
+      binding.hand1Left
     ))
     placeChoosers.add(PlaceChooser(
       binding.hand1OppositeRadio,
       Player.Opposite,
       kinaPokerViewModel,
       arrayOf(binding.hand1Opposite1, binding.hand1Opposite2,binding.hand1Opposite3, binding.hand1Opposite4 ) ,
-      viewLifecycleOwner
+      viewLifecycleOwner,
+      binding.hand1Opposite
     ))
     placeChoosers.add(PlaceChooser(
       binding.hand1RightRadio,
       Player.Right,
       kinaPokerViewModel,
       arrayOf(binding.hand1Right1, binding.hand1Right2,binding.hand1Right3, binding.hand1Right4 ),
-      viewLifecycleOwner
+      viewLifecycleOwner,
+      binding.hand1Right
     ))
 
     return root

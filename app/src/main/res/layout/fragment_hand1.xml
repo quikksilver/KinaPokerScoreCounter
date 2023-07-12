@@ -140,7 +140,7 @@
       android:id="@+id/hand1Right"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="@string/opposite" />
+      android:text="@string/right" />
 
     <RadioGroup
       android:id="@+id/hand1Right_radio"
