@@ -1,19 +1,26 @@
 package se.axel.bengtsson.kinapokerscorecalculator.ui.home
 
+import android.R
+import android.R.attr.button
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.*
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.RadioGroup
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import se.axel.bengtsson.kinapokerscorecalculator.KinaPoker
 import se.axel.bengtsson.kinapokerscorecalculator.Player
 import se.axel.bengtsson.kinapokerscorecalculator.databinding.FragmentHomeBinding
+import se.axel.bengtsson.kinapokerscorecalculator.ui.hand1.Hand1Fragment
 
 
 class HomeFragment : Fragment() {
@@ -31,6 +38,7 @@ class HomeFragment : Fragment() {
     savedInstanceState: Bundle?
   ): View {
     //TODO: Check if need to get anything from the shared pref.
+    //TODO: https://stackoverflow.com/questions/51043428/handling-back-button-in-android-navigation-component
 
     val kinaPokerViewModel =
       ViewModelProvider(this).get(KinaPokerViewModel::class.java)
@@ -118,6 +126,14 @@ class HomeFragment : Fragment() {
         scoreText.text = "score\n You: ${it[0]} Left: ${it[1]} Opposite: ${it[2]} Right: ${it[3]}"
       }
     }
+    val nextButton: Button = binding.next
+    nextButton.setOnClickListener(OnClickListener {
+
+      val navController = findNavController();
+      navController.popBackStack()
+      navController.navigate(se.axel.bengtsson.kinapokerscorecalculator.R.id.nav_hand1)
+
+    })
     return root
   }
 

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.hand1.Hand1Fragment">
+  <ScrollView
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+  <LinearLayout
+    android:id="@+id/hands"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+  <!-- HAND 1 -->
+
+  <View
+    android:id="@+id/line0"
+    android:layout_width="match_parent"
+    android:layout_height="0.75dp"
+    android:background="@android:color/black" />
+
+  <TextView
+    android:id="@+id/hand1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/hand1" />
+
+  <RadioGroup
+    android:id="@+id/hand1_radio"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+
+    <RadioButton
+      android:id="@+id/hand1_1"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:onClick="onCheckboxClickedHand"
+      android:text="@string/one" />
+
+    <RadioButton
+      android:id="@+id/hand1_2"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:onClick="onCheckboxClickedHand"
+      android:text="@string/two" />
+
+    <RadioButton
+      android:id="@+id/hand1_3"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:onClick="onCheckboxClickedHand"
+      android:text="@string/three" />
+
+    <RadioButton
+      android:id="@+id/hand1_4"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:onClick="onCheckboxClickedHand"
+      android:text="@string/four" />
+  </RadioGroup>
+
+  <TextView
+    android:id="@+id/kind"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/kind" />
+
+  <LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal" >
+
+    <CheckBox
+      android:id="@+id/kind_you"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:onClick="onCheckboxClickedKind"
+      android:text="@string/you2" />
+
+    <CheckBox
+      android:id="@+id/kind_two"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:onClick="onCheckboxClickedKind"
+      android:text="@string/two" />
+
+    <CheckBox
+      android:id="@+id/kind_three"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:onClick="onCheckboxClickedKind"
+      android:text="@string/three" />
+
+    <CheckBox
+      android:id="@+id/kind_four"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:onClick="onCheckboxClickedKind"
+      android:text="@string/four" />
+  </LinearLayout>
+    </LinearLayout>
+  </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
