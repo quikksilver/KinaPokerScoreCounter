@@ -1,14 +1,13 @@
 package se.axel.bengtsson.kinapokerscorecalculator.ui.home
 
-import android.R.attr.checked
+import android.R
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.*
 import android.view.ViewGroup
-import android.widget.CompoundButton
-import android.widget.RadioButton
+import android.widget.ArrayAdapter
 import android.widget.RadioGroup
 import android.widget.Spinner
 import android.widget.TextView
@@ -26,6 +25,7 @@ class HomeFragment : Fragment() {
   // This property is only valid between onCreateView and
   // onDestroyView.
   private val binding get() = _binding!!
+  private val playTypeSpinners: MutableList<PlayTypeSpinner> = mutableListOf<PlayTypeSpinner>()
 
   override fun onCreateView(
     inflater: LayoutInflater,
@@ -43,10 +43,11 @@ class HomeFragment : Fragment() {
 
     // Set Number of players listner
     val numberOfPlayers = binding.playersRadio
-    numberOfPlayers.setOnCheckedChangeListener { group:RadioGroup, checkedId:Int -> Log.d(
-      TAG,
+    numberOfPlayers.setOnCheckedChangeListener { group:RadioGroup, checkedId:Int ->
+      Log.d(TAG,
       "asd $group  ${group.id} ID $checkedId ID ${group.checkedRadioButtonId} R ${se.axel.bengtsson.kinapokerscorecalculator.R.id.four}"
-    )
+      )
+      resetSpinners()
       when (checkedId) {
         se.axel.bengtsson.kinapokerscorecalculator.R.id.one -> {
           Log.d(TAG, "chose 1 players")
@@ -82,6 +83,7 @@ class HomeFragment : Fragment() {
       youText.visibility = isVisible(it, Player.You)
     }
     val youSpinner: Spinner = binding.youSpinner
+    playTypeSpinners.add(PlayTypeSpinner(Player.You,homeViewModel,this.requireContext(), youSpinner))
     homeViewModel.kinaPoker.observe(viewLifecycleOwner) {
       youSpinner.visibility = isVisible(it, Player.You)
     }
@@ -90,6 +92,7 @@ class HomeFragment : Fragment() {
       leftText.visibility = isVisible(it, Player.Left)
     }
     val leftSpinner: Spinner = binding.leftSpinner
+    playTypeSpinners.add(PlayTypeSpinner(Player.Left,homeViewModel,this.requireContext(), leftSpinner))
     homeViewModel.kinaPoker.observe(viewLifecycleOwner) {
       leftSpinner.visibility = isVisible(it, Player.Left)
     }
@@ -98,6 +101,7 @@ class HomeFragment : Fragment() {
       oppositeText.visibility = isVisible(it, Player.Opposite)
     }
     val oppositeSpinner: Spinner = binding.oppositeSpinner
+    playTypeSpinners.add(PlayTypeSpinner(Player.Opposite,homeViewModel,this.requireContext(), oppositeSpinner))
     homeViewModel.kinaPoker.observe(viewLifecycleOwner) {
       oppositeSpinner.visibility = isVisible(it, Player.Opposite)
     }
@@ -106,10 +110,21 @@ class HomeFragment : Fragment() {
       rightText.visibility = isVisible(it, Player.Right)
     }
     val rightSpinner: Spinner = binding.rightSpinner
+    playTypeSpinners.add(PlayTypeSpinner(Player.Right,homeViewModel,this.requireContext(), rightSpinner))
     homeViewModel.kinaPoker.observe(viewLifecycleOwner) {
       rightSpinner.visibility = isVisible(it, Player.Right)
     }
+    val scoreText: TextView = binding.totalScore
+    homeViewModel.score.observe(viewLifecycleOwner) {
+      if (it != null) {
+        scoreText.text = "score\n You: ${it[0]} Left: ${it[1]} Opposite: ${it[2]} Right: ${it[3]}"
+      }
+    }
     return root
+  }
+
+  fun resetSpinners() {
+    playTypeSpinners.forEach {it.reset()}
   }
 
   private fun isVisible(kp: KinaPoker, player:Player): Int {
@@ -119,6 +134,7 @@ class HomeFragment : Fragment() {
       GONE
     }
   }
+
 
   override fun onDestroyView() {
      super.onDestroyView()

@@ -1,4 +1,4 @@
-package se.axel.bengtsson.kinapokerscorecalculator.ui.gallery
+package se.axel.bengtsson.kinapokerscorecalculator.ui.hand1
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

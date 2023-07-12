@@ -9,4 +9,7 @@ interface KinapokerInterface {
     fun isRoundComplete():Boolean
     fun setRoundComplete()
     fun setRound(round: Round): Array<Player>
+
+    // Getter
+    fun getRoundScore():Array<Int>
 }

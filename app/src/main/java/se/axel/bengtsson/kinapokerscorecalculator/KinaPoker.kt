@@ -3,21 +3,18 @@ package se.axel.bengtsson.kinapokerscorecalculator
 class KinaPoker(numberOfPlayers: Int): KinapokerInterface {
   val round:Round
   private val numberOfPlayers:Int
-  private var playTypeLocked:Boolean
   init {
     this.round = Round(numberOfPlayers)
     this.numberOfPlayers = numberOfPlayers
-    this.playTypeLocked = false
+
   }
 
   override fun setPlayersPlayType(player: Player, playType: PlayType) {
-    if (!playTypeLocked) {
-      round.playerRound[player.index(this.numberOfPlayers)].playType = playType
-    } else {
-      throw RuntimeException("Play type is locked")
-    }
+
+    round.playerRound[player.index(this.numberOfPlayers)].playType = playType
+
     if (isAllPlayersPlayTypeSet()) {
-      playTypeLocked = true
+      clearBonus()
       // Set Bonus on play type.
       // Not Play should always add to all.
       round.playerRound.forEach { p ->
@@ -79,6 +76,21 @@ class KinaPoker(numberOfPlayers: Int): KinapokerInterface {
 
   override fun setRound(round: Round): Array<Player> {
     TODO("Not yet implemented")
+  }
+
+  override fun getRoundScore(): Array<Int> {
+    return arrayOf(
+      if (isPlayerPlaying(Player.You)) { round.playerRound[Player.You.index(numberOfPlayers)].totalscore } else {0},
+      if (isPlayerPlaying(Player.Left)) { round.playerRound[Player.Left.index(numberOfPlayers)].totalscore } else {0},
+      if (isPlayerPlaying(Player.Opposite)) { round.playerRound[Player.Opposite.index(numberOfPlayers)].totalscore } else {0},
+      if (isPlayerPlaying(Player.Right)) { round.playerRound[Player.Right.index(numberOfPlayers)].totalscore } else {0}
+    )
+  }
+
+  private fun clearBonus() {
+    round.playerRound.forEach { player ->
+      player.bonus.clear()
+    }
   }
 
   private fun calcScore() {

@@ -1,4 +1,4 @@
-package se.axel.bengtsson.kinapokerscorecalculator.ui.gallery
+package se.axel.bengtsson.kinapokerscorecalculator.ui.hand1
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import se.axel.bengtsson.kinapokerscorecalculator.databinding.FragmentGalleryBinding
 
-class GalleryFragment : Fragment() {
+class Hand1Fragment : Fragment() {
 
     private var _binding: FragmentGalleryBinding? = null
 
