@@ -21,6 +21,7 @@ import androidx.navigation.fragment.findNavController
 import se.axel.bengtsson.kinapokerscorecalculator.KinaPoker
 import se.axel.bengtsson.kinapokerscorecalculator.Player
 import se.axel.bengtsson.kinapokerscorecalculator.databinding.FragmentHomeBinding
+import se.axel.bengtsson.kinapokerscorecalculator.ui.common.ScoreShower
 import se.axel.bengtsson.kinapokerscorecalculator.ui.hand1.Hand1Fragment
 
 
@@ -116,12 +117,9 @@ class HomeFragment : Fragment() {
     kinaPokerViewModel.kinaPoker.observe(viewLifecycleOwner) {
       rightSpinner.visibility = isVisible(it, Player.Right)
     }
-    val scoreText: TextView = binding.totalScore
-    kinaPokerViewModel.score.observe(viewLifecycleOwner) {
-      if (it != null) {
-        scoreText.text = "score\n You: ${it[0]} Left: ${it[1]} Opposite: ${it[2]} Right: ${it[3]}"
-      }
-    }
+
+    val scoreShower = ScoreShower(binding.totalScore, viewLifecycleOwner, kinaPokerViewModel)
+
     val nextButton: Button = binding.next
     nextButton.setOnClickListener(OnClickListener {
 

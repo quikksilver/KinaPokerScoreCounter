@@ -72,6 +72,11 @@ class KinaPoker(numberOfPlayers: Int): KinapokerInterface {
 
   override fun setPlayersBonus(player: Player, hand: Hand, bonusType: BonusType) {
     round.playerRound[player.index(numberOfPlayers)].bonus.add(Triple(player, bonusType, hand))
+    calcScore()
+  }
+
+  override fun removePlayersBonus(player: Player, hand: Hand, bonusType: BonusType) {
+    TODO("Not yet implemented")
   }
 
   override fun setRound(round: Round): Array<Player> {

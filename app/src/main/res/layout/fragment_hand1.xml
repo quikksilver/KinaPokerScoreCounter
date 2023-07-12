@@ -188,30 +188,32 @@
       android:id="@+id/kind_you"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:onClick="onCheckboxClickedKind"
       android:text="@string/you2" />
 
     <CheckBox
-      android:id="@+id/kind_two"
+      android:id="@+id/kind_left"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:onClick="onCheckboxClickedKind"
       android:text="@string/two" />
 
     <CheckBox
-      android:id="@+id/kind_three"
+      android:id="@+id/kind_opposite"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:onClick="onCheckboxClickedKind"
       android:text="@string/three" />
 
     <CheckBox
-      android:id="@+id/kind_four"
+      android:id="@+id/kind_right"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:onClick="onCheckboxClickedKind"
       android:text="@string/four" />
-  </LinearLayout>
+
+    </LinearLayout>
+    <TextView
+      android:id="@+id/totalScore"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      />
     </LinearLayout>
   </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

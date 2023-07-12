@@ -6,6 +6,7 @@ interface KinapokerInterface {
     fun setPlayersPlace(player: Player, hand: Hand, place: Int)
     fun isAllPlayersPlaceSet(hand: Hand):Boolean
     fun setPlayersBonus(player: Player, hand: Hand, bonusType: BonusType)
+    fun removePlayersBonus(player: Player, hand: Hand, bonusType: BonusType)
     fun isRoundComplete():Boolean
     fun setRoundComplete()
     fun setRound(round: Round): Array<Player>

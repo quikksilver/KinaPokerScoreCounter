@@ -8,9 +8,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
+import se.axel.bengtsson.kinapokerscorecalculator.BonusType
+import se.axel.bengtsson.kinapokerscorecalculator.Hand
 import se.axel.bengtsson.kinapokerscorecalculator.Player
 import se.axel.bengtsson.kinapokerscorecalculator.databinding.FragmentHand1Binding
+import se.axel.bengtsson.kinapokerscorecalculator.ui.common.BonusChooser
 import se.axel.bengtsson.kinapokerscorecalculator.ui.common.PlaceChooser
+import se.axel.bengtsson.kinapokerscorecalculator.ui.common.ScoreShower
 import se.axel.bengtsson.kinapokerscorecalculator.ui.home.KinaPokerViewModel
 
 class Hand1Fragment() : Fragment() {
@@ -20,6 +24,7 @@ class Hand1Fragment() : Fragment() {
   // This property is only valid between onCreateView and
   // onDestroyView.
   private val binding get() = _binding!!
+
   private val placeChoosers: MutableList<PlaceChooser> = mutableListOf<PlaceChooser>()
   override fun onCreateView(
     inflater: LayoutInflater,
@@ -42,7 +47,6 @@ class Hand1Fragment() : Fragment() {
       viewLifecycleOwner,
       binding.hand1You
     ))
-
     placeChoosers.add(PlaceChooser(
       binding.hand1LeftRadio,
       Player.Left,
@@ -67,7 +71,15 @@ class Hand1Fragment() : Fragment() {
       viewLifecycleOwner,
       binding.hand1Right
     ))
-
+    // Add Bonus Kind
+    val bonusChooser = BonusChooser(
+      Hand.Hand1,
+      BonusType.Kind,
+      arrayOf(binding.kindYou, binding.kindLeft, binding.kindOpposite, binding.kindRight),
+      viewLifecycleOwner,
+      kinaPokerViewModel)
+    // Total score
+    val scoreShower = ScoreShower(binding.totalScore, viewLifecycleOwner, kinaPokerViewModel)
     return root
   }
 

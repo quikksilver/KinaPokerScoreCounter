@@ -16,7 +16,7 @@ class PlaceChooser(
   val player: Player,
   private val kinaPokerViewModel: KinaPokerViewModel,
   private val buttons: Array<RadioButton>,
-  private val life: LifecycleOwner,
+  life: LifecycleOwner,
   private val text:TextView
 ) {
   private val TAG:String = "kpsc"

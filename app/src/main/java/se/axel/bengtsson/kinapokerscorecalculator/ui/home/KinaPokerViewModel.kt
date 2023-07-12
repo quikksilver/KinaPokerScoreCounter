@@ -24,8 +24,8 @@ class KinaPokerViewModel : ViewModel() {
   }
 
   fun updateScore() {
-    Log.d("kpsc", "Before " + _score.value.toString())
+    Log.d("kpsc", "Before " + _score.value?.get(0)+  " " + _score.value?.get(1) + " "+  _score.value?.get(2) + " " + _score.value?.get(3))
     _score.value = _kinaPoker.value?.getRoundScore();
-    Log.d("kpsc", "After " + _score.value.toString())
+    Log.d("kpsc", "After " + _score.value?.get(0)+  " " + _score.value?.get(1) + " "+  _score.value?.get(2) + " " + _score.value?.get(3))
   }
 }
