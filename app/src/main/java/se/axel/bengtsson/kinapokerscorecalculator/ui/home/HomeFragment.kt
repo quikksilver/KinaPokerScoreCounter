@@ -14,6 +14,7 @@ import android.widget.Spinner
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -40,8 +41,8 @@ class HomeFragment : Fragment() {
     //TODO: Check if need to get anything from the shared pref.
     //TODO: https://stackoverflow.com/questions/51043428/handling-back-button-in-android-navigation-component
 
-    val kinaPokerViewModel =
-      ViewModelProvider(this).get(KinaPokerViewModel::class.java)
+    val kinaPokerViewModel: KinaPokerViewModel by activityViewModels()
+      //ViewModelProvider(this).get(KinaPokerViewModel::class.java)
 
     _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
@@ -57,26 +58,21 @@ class HomeFragment : Fragment() {
       when (checkedId) {
         se.axel.bengtsson.kinapokerscorecalculator.R.id.one -> {
           Log.d(TAG, "chose 1 players")
-          //setVisibilityOnGameTypeSpinner(View.VISIBLE, View.GONE, View.GONE, View.GONE)
           kinaPokerViewModel.setNumberOfPlayer(1)
         }
         se.axel.bengtsson.kinapokerscorecalculator.R.id.two -> {
           Log.d(TAG, "chose 2 players")
-          //setVisibilityOnGameTypeSpinner(View.VISIBLE, View.VISIBLE, View.GONE, View.GONE)
           kinaPokerViewModel.setNumberOfPlayer(2)
         }
         se.axel.bengtsson.kinapokerscorecalculator.R.id.three -> {
           Log.d(TAG, "chose 3 players")
-          //setVisibilityOnGameTypeSpinner(View.VISIBLE, View.VISIBLE, View.VISIBLE, View.GONE)
           kinaPokerViewModel.setNumberOfPlayer(3)
         }
         se.axel.bengtsson.kinapokerscorecalculator.R.id.four -> {
           Log.d(TAG, "chose 4 players")
-          //setVisibilityOnGameTypeSpinner(View.VISIBLE, View.VISIBLE, View.VISIBLE, View.VISIBLE)
           kinaPokerViewModel.setNumberOfPlayer(4)
         }
       }
-
     }
     // Set text
     val playerText: TextView = binding.players

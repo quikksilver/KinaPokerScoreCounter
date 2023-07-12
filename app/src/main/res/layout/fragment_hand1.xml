@@ -21,48 +21,158 @@
     android:layout_width="match_parent"
     android:layout_height="0.75dp"
     android:background="@android:color/black" />
-
+<!-- You -->
   <TextView
-    android:id="@+id/hand1"
+    android:id="@+id/hand1You"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="@string/hand1" />
+    android:text="@string/you" />
 
   <RadioGroup
-    android:id="@+id/hand1_radio"
+    android:id="@+id/hand1You_radio"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal" >
 
     <RadioButton
-      android:id="@+id/hand1_1"
+      android:id="@+id/hand1You_1"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:onClick="onCheckboxClickedHand"
       android:text="@string/one" />
 
     <RadioButton
-      android:id="@+id/hand1_2"
+      android:id="@+id/hand1You_2"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:onClick="onCheckboxClickedHand"
       android:text="@string/two" />
 
     <RadioButton
-      android:id="@+id/hand1_3"
+      android:id="@+id/hand1You_3"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:onClick="onCheckboxClickedHand"
       android:text="@string/three" />
 
     <RadioButton
-      android:id="@+id/hand1_4"
+      android:id="@+id/hand1You_4"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:onClick="onCheckboxClickedHand"
       android:text="@string/four" />
-  </RadioGroup>
 
+  </RadioGroup>
+    <!-- Left -->
+    <TextView
+      android:id="@+id/hand1Left"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/left" />
+
+    <RadioGroup
+      android:id="@+id/hand1Left_radio"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal" >
+
+      <RadioButton
+        android:id="@+id/hand1Left_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/one" />
+
+      <RadioButton
+        android:id="@+id/hand1Left_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/two" />
+
+      <RadioButton
+        android:id="@+id/hand1Left_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/three" />
+
+      <RadioButton
+        android:id="@+id/hand1Left_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/four" />
+    </RadioGroup>
+
+    <!-- Opposite -->
+    <TextView
+      android:id="@+id/hand1Opposite"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/opposite" />
+
+    <RadioGroup
+      android:id="@+id/hand1Opposite_radio"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal" >
+
+      <RadioButton
+        android:id="@+id/hand1Opposite_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/one" />
+
+      <RadioButton
+        android:id="@+id/hand1Opposite_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/two" />
+
+      <RadioButton
+        android:id="@+id/hand1Opposite_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/three" />
+
+      <RadioButton
+        android:id="@+id/hand1Opposite_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/four" />
+    </RadioGroup>
+
+    <!-- Right -->
+    <TextView
+      android:id="@+id/hand1Right"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/opposite" />
+
+    <RadioGroup
+      android:id="@+id/hand1Right_radio"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal" >
+
+      <RadioButton
+        android:id="@+id/hand1Right_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/one" />
+
+      <RadioButton
+        android:id="@+id/hand1Right_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/two" />
+
+      <RadioButton
+        android:id="@+id/hand1Right_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/three" />
+
+      <RadioButton
+        android:id="@+id/hand1Right_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/four" />
+    </RadioGroup>
+    <!-- Bonus -->
   <TextView
     android:id="@+id/kind"
     android:layout_width="wrap_content"
