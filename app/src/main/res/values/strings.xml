@@ -25,6 +25,7 @@
   <string name="you">You:</string>
 
   <string-array name="game_type">
+    <item>Please select</item>
     <item>Play</item>
     <item>Not Play</item>
     <item>Automatic</item>
@@ -36,9 +37,10 @@
   <string name="opposite">Opposite:</string>
   <string name="right">Right:</string>
 
-  <string name="hand1">Hand one(3)</string>
-  <string name="hand2">Hand two(5)</string>
-  <string name="hand3">Hand three(5)</string>
+  <string name="hand1">Hand one(3 cards)</string>
+  <string name="hand2">Hand two(5 cards)</string>
+  <string name="hand3">Hand three(5 cards)</string>
+  <string name="summary">Summary</string>
 
   <string name="sum_text">Sum:</string>
   <string name="zero">0</string>

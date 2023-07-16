@@ -13,4 +13,5 @@ interface KinapokerInterface {
 
     // Getter
     fun getRoundScore():Array<Int>
+    fun getPlayerPlayType(player: Player): PlayType
 }

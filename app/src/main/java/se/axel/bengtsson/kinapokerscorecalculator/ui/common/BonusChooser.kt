@@ -7,6 +7,7 @@ import android.widget.CheckBox
 import androidx.lifecycle.LifecycleOwner
 import se.axel.bengtsson.kinapokerscorecalculator.BonusType
 import se.axel.bengtsson.kinapokerscorecalculator.Hand
+import se.axel.bengtsson.kinapokerscorecalculator.PlayType
 import se.axel.bengtsson.kinapokerscorecalculator.Player
 import se.axel.bengtsson.kinapokerscorecalculator.ui.home.KinaPokerViewModel
 
@@ -15,22 +16,17 @@ class BonusChooser(val hand: Hand, val bonus:BonusType, private val checkBox: Ar
 
     // Observer number of players
     kinaPokerViewModel.kinaPoker.observe(life) {
-      when (kinaPokerViewModel.numberOfPlayer.value) {
-        1 -> {
-          checkBox[1].visibility = View.GONE
-          checkBox[2].visibility = View.GONE
-          checkBox[3].visibility = View.GONE
-        }
-        2 -> {
-          checkBox[2].visibility = View.GONE
-          checkBox[3].visibility = View.GONE
-        }
-        3-> {
-          checkBox[3].visibility = View.GONE
-        }
-        4-> {
-
-        }
+      Player.values().forEach {
+        checkBox[it.index(kinaPokerViewModel!!.numberOfPlayer!!.value!!)].visibility =
+          if (kinaPokerViewModel.kinaPoker.value?.isPlayerPlaying(it) == true) {
+            if (kinaPokerViewModel.kinaPoker.value?.getPlayerPlayType(it) == PlayType.Play) {
+              View.VISIBLE
+            } else {
+              View.INVISIBLE
+            }
+          } else {
+            View.GONE
+          }
       }
       checkBox.forEach { it.isSelected = false }
     }
@@ -53,7 +49,7 @@ class BonusChooser(val hand: Hand, val bonus:BonusType, private val checkBox: Ar
             Log.d("kpsc", "Bonus chooser: $player  removing bonus $bonus")
             kinaPokerViewModel.kinaPoker.value?.removePlayersBonus(player.first, hand, bonus)
           }
-          kinaPokerViewModel.updateScore()
+          kinaPokerViewModel.updateModel()
         }
       }
     }

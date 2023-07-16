@@ -173,42 +173,79 @@
         android:text="@string/four" />
     </RadioGroup>
     <!-- Bonus -->
-  <TextView
-    android:id="@+id/kind"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/kind" />
 
-  <LinearLayout
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="horizontal" >
-
-    <CheckBox
-      android:id="@+id/kind_you"
+    <TextView
+      android:id="@+id/fourofakind2"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="@string/you2" />
+      android:text="@string/fourofakind" />
 
-    <CheckBox
-      android:id="@+id/kind_left"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="@string/left" />
+    <LinearLayout
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+      android:orientation="horizontal" >
 
-    <CheckBox
-      android:id="@+id/kind_opposite"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="@string/opposite" />
+      <CheckBox
+        android:id="@+id/fourofakind_you2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/you2" />
 
-    <CheckBox
-      android:id="@+id/kind_right"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="@string/right" />
+      <CheckBox
+        android:id="@+id/fourofakind_left2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/left" />
 
+      <CheckBox
+        android:id="@+id/fourofakind_opposite2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/opposite" />
+
+      <CheckBox
+        android:id="@+id/fourofakind_right2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/right" />
     </LinearLayout>
+
+    <TextView
+      android:id="@+id/straightflush2"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/straightflush" />
+
+    <LinearLayout
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+      android:orientation="horizontal" >
+
+      <CheckBox
+        android:id="@+id/straightflush_you2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/you2" />
+
+      <CheckBox
+        android:id="@+id/straightflush_left2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/left" />
+
+      <CheckBox
+        android:id="@+id/straightflush_opposite2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/opposite" />
+
+      <CheckBox
+        android:id="@+id/straightflush_right2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/right" />
+    </LinearLayout>
+    <!-- Total score -->
     <TextView
       android:id="@+id/totalScore"
       android:layout_width="wrap_content"
@@ -218,7 +255,7 @@
       android:id="@+id/next"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:text="@string/hand2"/>
+      android:text="@string/summary"/>
     </LinearLayout>
   </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

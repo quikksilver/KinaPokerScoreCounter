@@ -18,6 +18,18 @@
         tools:layout="@layout/fragment_hand1" />
 
     <fragment
+      android:id="@+id/nav_hand2"
+      android:name="se.axel.bengtsson.kinapokerscorecalculator.ui.hand1.Hand2Fragment"
+      android:label="@string/hand2"
+      tools:layout="@layout/fragment_hand2" />
+
+    <fragment
+      android:id="@+id/nav_hand3"
+      android:name="se.axel.bengtsson.kinapokerscorecalculator.ui.hand1.Hand3Fragment"
+      android:label="@string/hand3"
+      tools:layout="@layout/fragment_hand3" />
+
+    <fragment
         android:id="@+id/nav_slideshow"
         android:name="se.axel.bengtsson.kinapokerscorecalculator.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"

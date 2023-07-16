@@ -54,10 +54,10 @@ class PlayTypeSpinner(val player: Player,
           pos
         )
       )
-    if (kinaPokerViewModel.kinaPoker.value != null) {
+    if (kinaPokerViewModel.kinaPoker.value != null && id.toInt() != 0) {
       if (kinaPokerViewModel.kinaPoker.value?.isPlayerPlaying(player) == true) {
-        kinaPokerViewModel.kinaPoker.value?.setPlayersPlayType(player, playTypeArray[id.toInt()])
-        kinaPokerViewModel.updateScore();
+        kinaPokerViewModel.kinaPoker.value?.setPlayersPlayType(player, playTypeArray[id.toInt() - 1])
+        kinaPokerViewModel.updateModel();
       }
     }
   }
@@ -67,12 +67,12 @@ class PlayTypeSpinner(val player: Player,
     if (kinaPokerViewModel.kinaPoker.value != null) {
       if (kinaPokerViewModel.kinaPoker.value?.isPlayerPlaying(player) == true) {
         kinaPokerViewModel.kinaPoker.value?.setPlayersPlayType(player, playTypeArray[0])
-        kinaPokerViewModel.updateScore();
+        kinaPokerViewModel.updateModel();
       }
     }
   }
   override fun onNothingSelected(parent: AdapterView<*>?) {
-    // Another interface callback
+    kinaPokerViewModel.updateModel();
   }
 }
 

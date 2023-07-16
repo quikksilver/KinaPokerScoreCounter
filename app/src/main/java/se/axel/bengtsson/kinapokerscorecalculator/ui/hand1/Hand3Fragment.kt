@@ -14,14 +14,15 @@ import se.axel.bengtsson.kinapokerscorecalculator.Hand
 import se.axel.bengtsson.kinapokerscorecalculator.Player
 import se.axel.bengtsson.kinapokerscorecalculator.R
 import se.axel.bengtsson.kinapokerscorecalculator.databinding.FragmentHand1Binding
+import se.axel.bengtsson.kinapokerscorecalculator.databinding.FragmentHand3Binding
 import se.axel.bengtsson.kinapokerscorecalculator.ui.common.BonusChooser
 import se.axel.bengtsson.kinapokerscorecalculator.ui.common.PlaceChooser
 import se.axel.bengtsson.kinapokerscorecalculator.ui.common.ScoreShower
 import se.axel.bengtsson.kinapokerscorecalculator.ui.home.KinaPokerViewModel
 
-class Hand1Fragment() : Fragment() {
-  private val hand: Hand = Hand.Hand1
-  private var _binding: FragmentHand1Binding? = null
+class Hand3Fragment() : Fragment() {
+  private val hand: Hand = Hand.Hand3
+  private var _binding: FragmentHand3Binding? = null
 
   // This property is only valid between onCreateView and
   // onDestroyView.
@@ -37,8 +38,8 @@ class Hand1Fragment() : Fragment() {
     kinaPokerViewModel.updateModel()
     //val kinaPokerViewModel =
     //  ViewModelProvider(this).get(KinaPokerViewModel::class.java)
-    Log.d("kpsc", "Hand1: Number of players ${kinaPokerViewModel.numberOfPlayer.value}")
-    _binding = FragmentHand1Binding.inflate(inflater, container, false)
+    Log.d("kpsc", "$hand: Number of players ${kinaPokerViewModel.numberOfPlayer.value}")
+    _binding = FragmentHand3Binding.inflate(inflater, container, false)
     val root: View = binding.root
 
     // Add places
@@ -78,25 +79,31 @@ class Hand1Fragment() : Fragment() {
       viewLifecycleOwner,
       binding.hand1Right
     ))
-    // Add Bonus Kind
+    // Four
     val bonusChooser = BonusChooser(
       hand,
-      BonusType.Kind,
-      arrayOf(binding.kindYou, binding.kindLeft, binding.kindOpposite, binding.kindRight),
+      BonusType.FourOfAKind,
+      arrayOf(binding.fourofakindYou2, binding.fourofakindLeft2, binding.fourofakindOpposite2, binding.fourofakindRight2),
+      viewLifecycleOwner,
+      kinaPokerViewModel)
+    val bonusChooser2 = BonusChooser(
+      hand,
+      BonusType.StraightFlush,
+      arrayOf(binding.straightflushYou2, binding.straightflushLeft2, binding.straightflushOpposite2, binding.straightflushRight2),
       viewLifecycleOwner,
       kinaPokerViewModel)
     // Total score
     val scoreShower = ScoreShower(binding.totalScore, viewLifecycleOwner, kinaPokerViewModel)
     // Next Button
     val nextButton: Button = binding.next
-    kinaPokerViewModel.isHand1Done.observe(viewLifecycleOwner) {
+    kinaPokerViewModel.isHand3Done.observe(viewLifecycleOwner) {
       nextButton.isEnabled = it
     }
     nextButton.setOnClickListener(View.OnClickListener {
 
       val navController = findNavController();
       navController.popBackStack()
-      navController.navigate(R.id.nav_hand2)
+      navController.navigate(R.id.nav_slideshow)
 
     })
 

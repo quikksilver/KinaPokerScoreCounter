@@ -51,7 +51,9 @@ class KinaPoker(numberOfPlayers: Int): KinapokerInterface {
   }
 
   override fun isAllPlayersPlaceSet(hand: Hand): Boolean {
-    return round.playerRound.none { it.hands[hand] == null }
+    return round.playerRound
+      .filter {it.playType == PlayType.Play }
+      .none { it.hands[hand] == null }
   }
 
   override fun isRoundComplete():Boolean {
@@ -72,11 +74,24 @@ class KinaPoker(numberOfPlayers: Int): KinapokerInterface {
 
   override fun setPlayersBonus(player: Player, hand: Hand, bonusType: BonusType) {
     round.playerRound[player.index(numberOfPlayers)].bonus.add(Triple(player, bonusType, hand))
+    val filterAllExceptSelfAndPlaying:(PlayerRound)->Boolean= {pr -> pr.player != player && pr.playType == PlayType.Play }
+    round.playerRound
+      .filter(filterAllExceptSelfAndPlaying)
+      .forEach { p2 ->
+        p2.bonus.add((Triple(player, bonusType, hand)))
+      }
     calcScore()
   }
 
   override fun removePlayersBonus(player: Player, hand: Hand, bonusType: BonusType) {
-    TODO("Not yet implemented")
+    round.playerRound[player.index(numberOfPlayers)].bonus.remove(Triple(player, bonusType, hand))
+    val filterAllExceptSelfAndPlaying:(PlayerRound)->Boolean= {pr -> pr.player != player && pr.playType == PlayType.Play }
+    round.playerRound
+      .filter(filterAllExceptSelfAndPlaying)
+      .forEach { p2 ->
+        p2.bonus.remove((Triple(player, bonusType, hand)))
+      }
+    calcScore()
   }
 
   override fun setRound(round: Round): Array<Player> {
@@ -90,6 +105,14 @@ class KinaPoker(numberOfPlayers: Int): KinapokerInterface {
       if (isPlayerPlaying(Player.Opposite)) { round.playerRound[Player.Opposite.index(numberOfPlayers)].totalscore } else {0},
       if (isPlayerPlaying(Player.Right)) { round.playerRound[Player.Right.index(numberOfPlayers)].totalscore } else {0}
     )
+  }
+
+  override fun getPlayerPlayType(player: Player): PlayType {
+    if (isAllPlayersPlayTypeSet()) {
+      return round.playerRound[player.index(numberOfPlayers)].playType!!
+    } else {
+      throw RuntimeException("Should not be here")
+    }
   }
 
   private fun clearBonus() {

@@ -14,14 +14,15 @@ import se.axel.bengtsson.kinapokerscorecalculator.Hand
 import se.axel.bengtsson.kinapokerscorecalculator.Player
 import se.axel.bengtsson.kinapokerscorecalculator.R
 import se.axel.bengtsson.kinapokerscorecalculator.databinding.FragmentHand1Binding
+import se.axel.bengtsson.kinapokerscorecalculator.databinding.FragmentHand2Binding
 import se.axel.bengtsson.kinapokerscorecalculator.ui.common.BonusChooser
 import se.axel.bengtsson.kinapokerscorecalculator.ui.common.PlaceChooser
 import se.axel.bengtsson.kinapokerscorecalculator.ui.common.ScoreShower
 import se.axel.bengtsson.kinapokerscorecalculator.ui.home.KinaPokerViewModel
 
-class Hand1Fragment() : Fragment() {
-  private val hand: Hand = Hand.Hand1
-  private var _binding: FragmentHand1Binding? = null
+class Hand2Fragment() : Fragment() {
+  private val hand: Hand = Hand.Hand2
+  private var _binding: FragmentHand2Binding? = null
 
   // This property is only valid between onCreateView and
   // onDestroyView.
@@ -38,7 +39,7 @@ class Hand1Fragment() : Fragment() {
     //val kinaPokerViewModel =
     //  ViewModelProvider(this).get(KinaPokerViewModel::class.java)
     Log.d("kpsc", "Hand1: Number of players ${kinaPokerViewModel.numberOfPlayer.value}")
-    _binding = FragmentHand1Binding.inflate(inflater, container, false)
+    _binding = FragmentHand2Binding.inflate(inflater, container, false)
     val root: View = binding.root
 
     // Add places
@@ -78,25 +79,40 @@ class Hand1Fragment() : Fragment() {
       viewLifecycleOwner,
       binding.hand1Right
     ))
-    // Add Bonus Kind
-    val bonusChooser = BonusChooser(
+    // Add Bonus Full-house
+    val bonusChooserFullHause = BonusChooser(
       hand,
-      BonusType.Kind,
-      arrayOf(binding.kindYou, binding.kindLeft, binding.kindOpposite, binding.kindRight),
+      BonusType.FullHouse,
+      arrayOf(binding.fullhouseYou, binding.fullhouseLeft, binding.fullhouseOpposite, binding.fullhouseRight),
       viewLifecycleOwner,
       kinaPokerViewModel)
+
+    val bonusChooserFour = BonusChooser(
+      hand,
+      BonusType.FourOfAKind,
+      arrayOf(binding.fourofakindYou, binding.fourofakindLeft, binding.fourofakindOpposite, binding.fourofakindRight),
+      viewLifecycleOwner,
+      kinaPokerViewModel)
+
+    val bonusChoosersf = BonusChooser(
+      hand,
+      BonusType.StraightFlush,
+      arrayOf(binding.straightflushYou, binding.straightflushLeft, binding.straightflushOpposite, binding.straightflushRight),
+      viewLifecycleOwner,
+      kinaPokerViewModel)
+
     // Total score
     val scoreShower = ScoreShower(binding.totalScore, viewLifecycleOwner, kinaPokerViewModel)
     // Next Button
     val nextButton: Button = binding.next
-    kinaPokerViewModel.isHand1Done.observe(viewLifecycleOwner) {
+    kinaPokerViewModel.isHand2Done.observe(viewLifecycleOwner) {
       nextButton.isEnabled = it
     }
     nextButton.setOnClickListener(View.OnClickListener {
 
       val navController = findNavController();
       navController.popBackStack()
-      navController.navigate(R.id.nav_hand2)
+      navController.navigate(R.id.nav_hand3)
 
     })
 

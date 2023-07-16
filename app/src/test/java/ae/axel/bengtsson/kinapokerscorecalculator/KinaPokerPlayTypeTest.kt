@@ -10,7 +10,7 @@ import se.axel.bengtsson.kinapokerscorecalculator.Player
 
 /**
  */
-class KinaPokerTest {
+class KinaPokerPlayTypeTest {
   @Test
   fun happyTest4PlayersPlay() {
     val kp = KinaPoker(4)
@@ -199,4 +199,6 @@ class KinaPokerTest {
     assertTrue(kp.isAllPlayersPlaceSet(Hand.Hand3))
     assertArrayEquals(kp.round.playerRound.map { it.totalscore}.toTypedArray(), arrayOf(0))
   }
+
+  //
 }

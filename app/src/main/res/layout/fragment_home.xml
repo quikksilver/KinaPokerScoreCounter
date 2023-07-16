@@ -128,309 +128,20 @@
         android:id="@+id/next"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hand3"/>
+        android:text="@string/hand1"/>
       <!-- Hand layout -->
 
 
         <!-- HAND 2 -->
 
-        <View
-          android:id="@+id/line1"
-          android:layout_width="match_parent"
-          android:layout_height="0.75dp"
-          android:background="@android:color/black" />
+                <!-- Bonus 2 -->
 
-        <TextView
-          android:id="@+id/hand2"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="@string/hand2" />
 
-        <RadioGroup
-          android:id="@+id/hand2_radio"
-          android:layout_width="fill_parent"
-          android:layout_height="wrap_content"
-          android:orientation="horizontal" >
-
-          <RadioButton
-            android:id="@+id/hand2_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onCheckboxClickedHand"
-            android:text="@string/one" />
-
-          <RadioButton
-            android:id="@+id/hand2_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onCheckboxClickedHand"
-            android:text="@string/two" />
-
-          <RadioButton
-            android:id="@+id/hand2_3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onCheckboxClickedHand"
-            android:text="@string/three" />
-
-          <RadioButton
-            android:id="@+id/hand2_4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onCheckboxClickedHand"
-            android:text="@string/four" />
-        </RadioGroup>
-        <!-- Bonus 2 -->
-
-        <TextView
-          android:id="@+id/fullhouse"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="@string/fullhouse" />
-
-        <LinearLayout
-          android:layout_width="fill_parent"
-          android:layout_height="fill_parent"
-          android:orientation="horizontal" >
-
-          <CheckBox
-            android:id="@+id/fullhouse_you"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onCheckboxClickedFullHouse"
-            android:text="@string/you2" />
-
-          <CheckBox
-            android:id="@+id/fullhouse_two"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onCheckboxClickedFullHouse"
-            android:text="@string/two" />
-
-          <CheckBox
-            android:id="@+id/fullhouse_three"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onCheckboxClickedFullHouse"
-            android:text="@string/three" />
-
-          <CheckBox
-            android:id="@+id/fullhouse_four"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onCheckboxClickedFullHouse"
-            android:text="@string/four" />
-        </LinearLayout>
-
-        <TextView
-          android:id="@+id/fourofakind"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="@string/fourofakind" />
-
-        <LinearLayout
-          android:layout_width="fill_parent"
-          android:layout_height="fill_parent"
-          android:orientation="horizontal" >
-
-          <CheckBox
-            android:id="@+id/fourofakind_you"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onCheckboxClickedFourOfAKind"
-            android:text="@string/you2" />
-
-          <CheckBox
-            android:id="@+id/fourofakind_two"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onCheckboxClickedFourOfAKind"
-            android:text="@string/two" />
-
-          <CheckBox
-            android:id="@+id/fourofakind_three"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onCheckboxClickedFourOfAKind"
-            android:text="@string/three" />
-
-          <CheckBox
-            android:id="@+id/fourofakind_four"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onCheckboxClickedFourOfAKind"
-            android:text="@string/four" />
-        </LinearLayout>
-
-        <TextView
-          android:id="@+id/straightflush"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="@string/straightflush" />
-
-        <LinearLayout
-          android:layout_width="fill_parent"
-          android:layout_height="fill_parent"
-          android:orientation="horizontal" >
-
-          <CheckBox
-            android:id="@+id/straightflush_you"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onCheckboxClickedStraightFlush"
-            android:text="@string/you2" />
-
-          <CheckBox
-            android:id="@+id/straightflush_two"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onCheckboxClickedStraightFlush"
-            android:text="@string/two" />
-
-          <CheckBox
-            android:id="@+id/straightflush_three"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onCheckboxClickedStraightFlush"
-            android:text="@string/three" />
-
-          <CheckBox
-            android:id="@+id/straightflush_four"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onCheckboxClickedStraightFlush"
-            android:text="@string/four" />
-        </LinearLayout>
 
         <!-- HAND 3 -->
 
-        <View
-          android:id="@+id/line2"
-          android:layout_width="match_parent"
-          android:layout_height="0.75dp"
-          android:background="@android:color/black" />
 
-        <TextView
-          android:id="@+id/hand3"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="@string/hand3" />
-
-        <RadioGroup
-          android:id="@+id/hand3_radio"
-          android:layout_width="fill_parent"
-          android:layout_height="wrap_content"
-          android:orientation="horizontal" >
-
-          <RadioButton
-            android:id="@+id/hand3_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onCheckboxClickedHand"
-            android:text="@string/one" />
-
-          <RadioButton
-            android:id="@+id/hand3_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onCheckboxClickedHand"
-            android:text="@string/two" />
-
-          <RadioButton
-            android:id="@+id/hand3_3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onCheckboxClickedHand"
-            android:text="@string/three" />
-
-          <RadioButton
-            android:id="@+id/hand3_4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onCheckboxClickedHand"
-            android:text="@string/four" />
-        </RadioGroup>
-
-        <TextView
-          android:id="@+id/fourofakind2"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="@string/fourofakind" />
-
-        <LinearLayout
-          android:layout_width="fill_parent"
-          android:layout_height="fill_parent"
-          android:orientation="horizontal" >
-
-          <CheckBox
-            android:id="@+id/fourofakind_you2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onCheckboxClickedFourOfAKind2"
-            android:text="@string/you2" />
-
-          <CheckBox
-            android:id="@+id/fourofakind_two2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onCheckboxClickedFourOfAKind2"
-            android:text="@string/two" />
-
-          <CheckBox
-            android:id="@+id/fourofakind_three2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onCheckboxClickedFourOfAKind2"
-            android:text="@string/three" />
-
-          <CheckBox
-            android:id="@+id/fourofakind_four2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onCheckboxClickedFourOfAKind2"
-            android:text="@string/four" />
-        </LinearLayout>
-
-        <TextView
-          android:id="@+id/straightflush2"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="@string/straightflush" />
-
-        <LinearLayout
-          android:layout_width="fill_parent"
-          android:layout_height="fill_parent"
-          android:orientation="horizontal" >
-
-          <CheckBox
-            android:id="@+id/straightflush_you2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onCheckboxClickedStraightFlush2"
-            android:text="@string/you2" />
-
-          <CheckBox
-            android:id="@+id/straightflush_two2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onCheckboxClickedStraightFlush2"
-            android:text="@string/two" />
-
-          <CheckBox
-            android:id="@+id/straightflush_three2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onCheckboxClickedStraightFlush2"
-            android:text="@string/three" />
-
-          <CheckBox
-            android:id="@+id/straightflush_four2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onCheckboxClickedStraightFlush2"
-            android:text="@string/four" />
-        </LinearLayout>
-
+<!--
 
       <View
         android:id="@+id/line3"
@@ -502,9 +213,9 @@
           android:layout_height="wrap_content"
           android:onClick="onCheckboxClickedScoopedBy"
           android:text="@string/four" />
-      </LinearLayout>
+      </LinearLayout>-->
       <!-- SUM -->
-
+<!--
       <View
         android:layout_width="match_parent"
         android:layout_height="0.75dp"
@@ -520,7 +231,7 @@
         android:id="@+id/sum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/zero" />
+        android:text="@string/zero" /> -->
     </LinearLayout>
   </ScrollView>
 

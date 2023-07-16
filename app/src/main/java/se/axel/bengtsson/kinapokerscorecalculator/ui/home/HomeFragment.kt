@@ -1,7 +1,5 @@
 package se.axel.bengtsson.kinapokerscorecalculator.ui.home
 
-import android.R
-import android.R.attr.button
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,16 +11,12 @@ import android.widget.RadioGroup
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import se.axel.bengtsson.kinapokerscorecalculator.KinaPoker
 import se.axel.bengtsson.kinapokerscorecalculator.Player
 import se.axel.bengtsson.kinapokerscorecalculator.databinding.FragmentHomeBinding
 import se.axel.bengtsson.kinapokerscorecalculator.ui.common.ScoreShower
-import se.axel.bengtsson.kinapokerscorecalculator.ui.hand1.Hand1Fragment
 
 
 class HomeFragment : Fragment() {
@@ -75,10 +69,13 @@ class HomeFragment : Fragment() {
         }
       }
     }
+    val radioButtons = arrayOf(binding.one, binding.two, binding.three, binding.four)
     // Set text
     val playerText: TextView = binding.players
     kinaPokerViewModel.numberOfPlayer.observe(viewLifecycleOwner) {
+      Log.d("kpsc", "Number of player changed $it")
       playerText.text = "Players $it"
+      numberOfPlayers.check(radioButtons[it - 1].id)
     }
     // Game Type
     val youText: TextView = binding.you
@@ -121,6 +118,9 @@ class HomeFragment : Fragment() {
     val scoreShower = ScoreShower(binding.totalScore, viewLifecycleOwner, kinaPokerViewModel)
 
     val nextButton: Button = binding.next
+    kinaPokerViewModel.isPlayTypeDone.observe(viewLifecycleOwner) {
+      nextButton.isEnabled = it
+    }
     nextButton.setOnClickListener(OnClickListener {
 
       val navController = findNavController();
