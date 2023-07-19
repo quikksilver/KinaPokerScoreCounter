@@ -20,12 +20,13 @@ class BonusChooser(val hand: Hand, val bonus:BonusType, private val checkBox: Ar
         checkBox[it.index(kinaPokerViewModel!!.numberOfPlayer!!.value!!)].visibility =
           if (kinaPokerViewModel.kinaPoker.value?.isPlayerPlaying(it) == true) {
             if (kinaPokerViewModel.kinaPoker.value?.getPlayerPlayType(it) == PlayType.Play) {
-              if (bonus == BonusType.Win && player != null) { // Special case TODO move
+              // Special case TODO move
+              if (bonus == BonusType.Win && player != null && it == player) {
                 View.INVISIBLE
               } else {
                 View.VISIBLE
               }
-
+              // Special case end
             } else {
               View.INVISIBLE
             }
@@ -37,10 +38,12 @@ class BonusChooser(val hand: Hand, val bonus:BonusType, private val checkBox: Ar
 
       // Special case (TODO should be moved), notplaying and bonus in Win
       if (bonus == BonusType.Win && player != null) {
-        if (kinaPokerViewModel.kinaPoker.value?.isPlayerPlaying(player) != true) {
+        if (!(kinaPokerViewModel.kinaPoker.value?.isPlayerPlaying(player) == true
+          && kinaPokerViewModel.kinaPoker.value?.getPlayerPlayType(player) == PlayType.Play)) {
           checkBox.forEach { it.visibility = View.INVISIBLE }
         }
       }
+      // Special case end
     }
     checkBox.forEach {
       it.setOnClickListener { view ->

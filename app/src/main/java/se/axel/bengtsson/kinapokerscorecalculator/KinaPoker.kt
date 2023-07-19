@@ -59,8 +59,12 @@ class KinaPoker(numberOfPlayers: Int): KinapokerInterface {
   override fun isAllPlayersPlaceSet(hand: Hand): Boolean {
     val playing = numberOfPlayType(PlayType.Play)
     return round.playerRound
-      .filter {it.playType == PlayType.Play }
-      .none { it.bonus.filter { it.second == BonusType.Win && it.third == hand }.size == playing }
+      .filter { playerRound ->
+        println("$playing " + playerRound.bonus.filter { it.second == BonusType.Win && it.third == hand
+        }.size)
+        playerRound.playType == PlayType.Play
+          && playerRound.bonus.filter { it.second == BonusType.Win && it.third == hand
+        }.size - 1 == playing }.size == playing
   }
 
   // BONUS
