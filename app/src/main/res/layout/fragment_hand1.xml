@@ -26,153 +26,154 @@
     android:id="@+id/hand1You"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="@string/you" />
+    android:text="@string/w_you" />
 
-  <RadioGroup
-    android:id="@+id/hand1You_radio"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal" >
+    <LinearLayout
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+      android:orientation="horizontal" >
 
-    <RadioButton
+    <CheckBox
       android:id="@+id/hand1You_1"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="@string/one" />
+      android:text="@string/you" />
 
-    <RadioButton
+    <CheckBox
       android:id="@+id/hand1You_2"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="@string/two" />
+      android:text="@string/left" />
 
-    <RadioButton
+    <CheckBox
       android:id="@+id/hand1You_3"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="@string/three" />
+      android:text="@string/opposite" />
 
-    <RadioButton
+    <CheckBox
       android:id="@+id/hand1You_4"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="@string/four" />
+      android:text="@string/right" />
 
-  </RadioGroup>
+    </LinearLayout>
     <!-- Left -->
     <TextView
       android:id="@+id/hand1Left"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="@string/left" />
+      android:text="@string/w_left" />
 
-    <RadioGroup
-      android:id="@+id/hand1Left_radio"
+    <LinearLayout
       android:layout_width="fill_parent"
-      android:layout_height="wrap_content"
+      android:layout_height="fill_parent"
       android:orientation="horizontal" >
 
-      <RadioButton
+      <CheckBox
         android:id="@+id/hand1Left_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/one" />
 
-      <RadioButton
+      <CheckBox
         android:id="@+id/hand1Left_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/two" />
+        android:text="@string/left" />
 
-      <RadioButton
+      <CheckBox
         android:id="@+id/hand1Left_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/three" />
+        android:text="@string/opposite" />
 
-      <RadioButton
+      <CheckBox
         android:id="@+id/hand1Left_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/four" />
-    </RadioGroup>
+        android:text="@string/right" />
+    </LinearLayout>
 
     <!-- Opposite -->
     <TextView
       android:id="@+id/hand1Opposite"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="@string/opposite" />
+      android:text="@string/w_opposite" />
 
-    <RadioGroup
-      android:id="@+id/hand1Opposite_radio"
+    <LinearLayout
       android:layout_width="fill_parent"
-      android:layout_height="wrap_content"
+      android:layout_height="fill_parent"
       android:orientation="horizontal" >
 
-      <RadioButton
+      <CheckBox
         android:id="@+id/hand1Opposite_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/one" />
 
-      <RadioButton
+      <CheckBox
         android:id="@+id/hand1Opposite_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/two" />
+        android:text="@string/left" />
 
-      <RadioButton
+      <CheckBox
         android:id="@+id/hand1Opposite_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/three" />
+        android:text="@string/opposite" />
 
-      <RadioButton
+      <CheckBox
         android:id="@+id/hand1Opposite_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/four" />
-    </RadioGroup>
+        android:text="@string/right" />
+    </LinearLayout>
 
     <!-- Right -->
     <TextView
       android:id="@+id/hand1Right"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="@string/right" />
+      android:text="@string/w_right" />
 
-    <RadioGroup
-      android:id="@+id/hand1Right_radio"
+    <LinearLayout
       android:layout_width="fill_parent"
-      android:layout_height="wrap_content"
+      android:layout_height="fill_parent"
       android:orientation="horizontal" >
 
-      <RadioButton
+      <CheckBox
         android:id="@+id/hand1Right_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/one" />
 
-      <RadioButton
+      <CheckBox
         android:id="@+id/hand1Right_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/two" />
+        android:text="@string/left" />
 
-      <RadioButton
+      <CheckBox
         android:id="@+id/hand1Right_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/three" />
+        android:text="@string/opposite" />
 
-      <RadioButton
+      <CheckBox
         android:id="@+id/hand1Right_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/four" />
-    </RadioGroup>
+        android:text="@string/right" />
+    </LinearLayout>
     <!-- Bonus -->
+    <TextView
+      android:id="@+id/bonus"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/bonus" />
   <TextView
     android:id="@+id/kind"
     android:layout_width="wrap_content"
@@ -208,7 +209,7 @@
       android:layout_height="wrap_content"
       android:text="@string/right" />
 
-    </LinearLayout>
+  </LinearLayout>
     <TextView
       android:id="@+id/totalScore"
       android:layout_width="wrap_content"

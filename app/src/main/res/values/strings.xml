@@ -22,7 +22,7 @@
   <string name="two">2</string>
   <string name="three">3</string>
   <string name="four">4</string>
-  <string name="you">You:</string>
+
 
   <string-array name="game_type">
     <item>Please select</item>
@@ -33,6 +33,15 @@
     <item>Color Dragon</item>
   </string-array>
 
+  <string name="bonus">Bonus:</string>
+  <!-- Winner text box -->
+  <string name="w_you">You win over:</string>
+  <string name="w_left">Left win over:</string>
+  <string name="w_opposite">Opposite win over:</string>
+  <string name="w_right">Right win over:</string>
+
+
+  <string name="you">You:</string>
   <string name="left">Left:</string>
   <string name="opposite">Opposite:</string>
   <string name="right">Right:</string>
