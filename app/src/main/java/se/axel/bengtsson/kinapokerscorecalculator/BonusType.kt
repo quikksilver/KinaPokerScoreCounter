@@ -10,6 +10,7 @@ enum class BonusType(val points: Int) {
   FourOfAKind(4),
   StraightFlush(5),
   ScoopUp(3),
+  Win(1),
   NotPlay(-3),
   Automatic(3),
   Dragon(13),

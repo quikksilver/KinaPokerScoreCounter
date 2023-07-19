@@ -52,28 +52,29 @@ class PlaceChooser(
       Log.d(TAG,
         "PlaceChooser: $group  ${group.id} ID $checkedId checked ID ${group.checkedRadioButtonId} R ${se.axel.bengtsson.kinapokerscorecalculator.R.id.four}"
       )
-      val place = when (checkedId) {
+      val loserPlayer:Player = when (checkedId) {
         buttons[0].id -> {
           Log.d(TAG, "PlaceChooser: Player: $player chose place 1")
-          1
+          Player.You
         }
         buttons[1].id -> {
           Log.d(TAG, "PlaceChooser: Player: $player chose place 2")
-          2
+          Player.Left
         }
         buttons[2].id -> {
           Log.d(TAG, "PlaceChooser: Player: $player chose place 3")
-          3
+          Player.Opposite
         }
         buttons[3].id -> {
           Log.d(TAG, "PlaceChooser: Player: $player chose place 4")
-          4
+          Player.Right
         }
         else -> {
           Log.d(TAG, "PlaceChooser: Player: $player chose place 0")
+          Player.You
         }
       }
-      kinaPokerViewModel.kinaPoker.value?.setPlayersPlace(player,hand,place)
+      kinaPokerViewModel.kinaPoker.value?.setPlayerWin(player, hand, loserPlayer)
       kinaPokerViewModel.updateModel()
     }
   }

@@ -23,9 +23,9 @@ class KinaPokerPlaceTest {
     assertArrayEquals(kp.round.playerRound.map { it.playType }.toTypedArray(), arrayOf(PlayType.NotPlay, PlayType.Play, PlayType.Play, PlayType.Play))
     assertArrayEquals(kp.round.playerRound.map { it.totalscore}.toTypedArray(), arrayOf(-9,3,3,3))
     assertTrue(kp.isAllPlayersPlayTypeSet())
-    kp.setPlayersPlace(Player.Left, Hand.Hand1, 1)
-    kp.setPlayersPlace(Player.Opposite, Hand.Hand1, 2)
-    kp.setPlayersPlace(Player.Right, Hand.Hand1, 3)
+    kp.setPlayerWin(Player.Left, Hand.Hand1, Player.Opposite)
+    kp.setPlayerWin(Player.Left, Hand.Hand1, Player.Right)
+    kp.setPlayerWin(Player.Opposite, Hand.Hand1, Player.Right)
     assertTrue(kp.isAllPlayersPlaceSet(Hand.Hand1))
     assertArrayEquals(kp.round.playerRound.map { it.totalscore}.toTypedArray(), arrayOf(-9,5,3,1))
   }

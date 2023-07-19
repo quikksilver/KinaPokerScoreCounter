@@ -8,9 +8,8 @@ class KinaPoker(numberOfPlayers: Int): KinapokerInterface {
     this.numberOfPlayers = numberOfPlayers
 
   }
-
+  // PLAY TYPE
   override fun setPlayersPlayType(player: Player, playType: PlayType) {
-
     round.playerRound[player.index(this.numberOfPlayers)].playType = playType
 
     if (isAllPlayersPlayTypeSet()) {
@@ -18,9 +17,6 @@ class KinaPoker(numberOfPlayers: Int): KinapokerInterface {
       // Set Bonus on play type.
       // Not Play should always add to all.
       round.playerRound.forEach { p ->
-        // Add Bonus to it self
-        p.bonus.add((Triple(p.player, p.playType!!.bonusType, Hand.PlayType)))
-
         val filterAllExceptSelf:(PlayerRound)->Boolean= {pr -> pr.player != p.player}
         val filterAllExceptSelfAndPlaying:(PlayerRound)->Boolean= {pr -> pr.player != p.player && pr.playType == PlayType.Play }
 
@@ -28,6 +24,9 @@ class KinaPoker(numberOfPlayers: Int): KinapokerInterface {
         round.playerRound
           .filter(if ( p.playType == PlayType.NotPlay) {filterAllExceptSelf} else {filterAllExceptSelfAndPlaying})
           .forEach { p2 ->
+            // Add Bonus to it self
+            p.bonus.add((Triple(p.player, p.playType!!.bonusType, Hand.PlayType)))
+            // Add Negative bonus to other player
             p2.bonus.add((Triple(p.player, p.playType!!.bonusType, Hand.PlayType)))
           }
       }
@@ -39,22 +38,58 @@ class KinaPoker(numberOfPlayers: Int): KinapokerInterface {
     return round.playerRound.map { it.playType != null }.reduce { acc, b -> acc && b }
   }
 
-  override fun setPlayersPlace(player: Player, hand: Hand, place: Int) {
-    if (round.playerRound[player.index(numberOfPlayers)].hands.containsKey(hand)) {
-      round.playerRound[player.index(numberOfPlayers)].hands[hand] = place
-      if (isAllPlayersPlaceSet(hand)) {
-        calcScore()
-      }
-    } else {
-      throw RuntimeException("Wrong hand: $hand")
+  override fun setPlayerWin(player: Player, hand: Hand, loser: Player) {
+    val bonusType = BonusType.Win
+    if (player != loser) {
+      round.playerRound[player.index(numberOfPlayers)].bonus.add(Triple(player, bonusType, hand))
+      round.playerRound[loser.index(numberOfPlayers)].bonus.add(Triple(player, bonusType, hand))
     }
+    calcScore()
+  }
+
+  override fun removePlayerWin(player: Player, hand: Hand, loser: Player) {
+    val bonusType = BonusType.Win
+    if (player != loser) {
+      round.playerRound[player.index(numberOfPlayers)].bonus.remove(Triple(player, bonusType, hand))
+      round.playerRound[loser.index(numberOfPlayers)].bonus.remove(Triple(player, bonusType, hand))
+    }
+    calcScore()
   }
 
   override fun isAllPlayersPlaceSet(hand: Hand): Boolean {
+    val playing = numberOfPlayType(PlayType.Play)
     return round.playerRound
       .filter {it.playType == PlayType.Play }
-      .none { it.hands[hand] == null }
+      .none { it.bonus.filter { it.second == BonusType.Win && it.third == hand }.size == playing }
   }
+
+  // BONUS
+  override fun setPlayersBonus(player: Player, hand: Hand, bonusType: BonusType) {
+    val filterAllExceptSelfAndPlaying:(PlayerRound)->Boolean = {pr -> pr.player != player && pr.playType == PlayType.Play }
+
+    round.playerRound
+      .filter(filterAllExceptSelfAndPlaying)
+      .forEach { p2 ->
+        // Add bonus
+        round.playerRound[player.index(numberOfPlayers)].bonus.add(Triple(player, bonusType, hand))
+        // Take bonus
+        p2.bonus.add((Triple(player, bonusType, hand)))
+      }
+    calcScore()
+  }
+
+  override fun removePlayersBonus(player: Player, hand: Hand, bonusType: BonusType) {
+    val filterAllExceptSelfAndPlaying:(PlayerRound)->Boolean = {pr -> pr.player != player && pr.playType == PlayType.Play }
+    round.playerRound
+      .filter(filterAllExceptSelfAndPlaying)
+      .forEach { p2 ->
+        round.playerRound[player.index(numberOfPlayers)].bonus.remove(Triple(player, bonusType, hand))
+        p2.bonus.remove((Triple(player, bonusType, hand)))
+      }
+    calcScore()
+  }
+
+  // UTILS
 
   override fun isRoundComplete():Boolean {
     return isAllPlayersPlaceSet(Hand.Hand3) && isAllPlayersPlaceSet(Hand.Hand2) && isAllPlayersPlaceSet(Hand.Hand1)
@@ -72,27 +107,10 @@ class KinaPoker(numberOfPlayers: Int): KinapokerInterface {
     return round.playerRound.any { it.player == player }
   }
 
-  override fun setPlayersBonus(player: Player, hand: Hand, bonusType: BonusType) {
-    round.playerRound[player.index(numberOfPlayers)].bonus.add(Triple(player, bonusType, hand))
-    val filterAllExceptSelfAndPlaying:(PlayerRound)->Boolean= {pr -> pr.player != player && pr.playType == PlayType.Play }
-    round.playerRound
-      .filter(filterAllExceptSelfAndPlaying)
-      .forEach { p2 ->
-        p2.bonus.add((Triple(player, bonusType, hand)))
-      }
-    calcScore()
-  }
-
-  override fun removePlayersBonus(player: Player, hand: Hand, bonusType: BonusType) {
-    round.playerRound[player.index(numberOfPlayers)].bonus.remove(Triple(player, bonusType, hand))
-    val filterAllExceptSelfAndPlaying:(PlayerRound)->Boolean= {pr -> pr.player != player && pr.playType == PlayType.Play }
-    round.playerRound
-      .filter(filterAllExceptSelfAndPlaying)
-      .forEach { p2 ->
-        p2.bonus.remove((Triple(player, bonusType, hand)))
-      }
-    calcScore()
-  }
+ fun numberOfPlayType(playType: PlayType): Int {
+   val filterType:(PlayerRound)->Boolean = { pr -> pr.playType == playType }
+   return round.playerRound.filter(filterType).size
+ }
 
   override fun setRound(round: Round): Array<Player> {
     TODO("Not yet implemented")
@@ -115,6 +133,7 @@ class KinaPoker(numberOfPlayers: Int): KinapokerInterface {
     }
   }
 
+
   private fun clearBonus() {
     round.playerRound.forEach { player ->
       player.bonus.clear()
@@ -131,8 +150,8 @@ class KinaPoker(numberOfPlayers: Int): KinapokerInterface {
         .filter { it.first == player.player }
         .map { bonus ->
           when (bonus.second) {
-            BonusType.NotPlay -> bonus.second.points * (numberOfPlayers - 1)
-            else -> bonus.second.points * round.playerRound.filter { it.player != player.player && it.playType == PlayType.Play}.size
+            BonusType.NotPlay -> bonus.second.points //* (numberOfPlayers - 1)
+            else -> bonus.second.points //* round.playerRound.filter { it.player != player.player && it.playType == PlayType.Play}.size
           }
         }
         .fold(0) {acc , b -> acc + b}
@@ -143,7 +162,7 @@ class KinaPoker(numberOfPlayers: Int): KinapokerInterface {
         .fold(0) {acc , b -> acc + b * -1}
     }
     //Place
-    val numberThatPlay = round.playerRound
+    /*val numberThatPlay = round.playerRound
       .filter { it.playType == PlayType.Play }.size
     arrayOf(Hand.Hand1, Hand.Hand2, Hand.Hand3)
       .filter { isAllPlayersPlaceSet(it) }
@@ -153,6 +172,6 @@ class KinaPoker(numberOfPlayers: Int): KinapokerInterface {
           .forEach { player ->
             player.totalscore += PlaceScore.placePoints[numberThatPlay - 1][player.hands[hand]!! - 1]
           }
-      }
+      }*/
   }
 }
