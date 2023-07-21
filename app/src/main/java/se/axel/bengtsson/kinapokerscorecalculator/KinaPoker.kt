@@ -64,7 +64,7 @@ class KinaPoker(numberOfPlayers: Int): KinapokerInterface {
         }.size)
         playerRound.playType == PlayType.Play
           && playerRound.bonus.filter { it.second == BonusType.Win && it.third == hand
-        }.size - 1 == playing }.size == playing
+        }.size  == playing - 1}.size == playing
   }
 
   // BONUS

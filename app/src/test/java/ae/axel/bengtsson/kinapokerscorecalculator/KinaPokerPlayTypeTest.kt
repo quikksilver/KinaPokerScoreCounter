@@ -175,11 +175,11 @@ class KinaPokerPlayTypeTest {
     println(kp.round.playerRound[Player.You.index(2)].toString())
     assertArrayEquals(kp.round.playerRound.map { it.totalscore}.toTypedArray(), arrayOf(1,-1))
     // Hand 2
-    kp.setPlayerWin(Player.You, Hand.Hand1, Player.Opposite)
+    kp.setPlayerWin(Player.You, Hand.Hand2, Player.Opposite)
     assertTrue(kp.isAllPlayersPlaceSet(Hand.Hand2))
     assertArrayEquals(kp.round.playerRound.map { it.totalscore}.toTypedArray(), arrayOf(2,-2))
     // Hand 3
-    kp.setPlayerWin(Player.You, Hand.Hand1, Player.Opposite)
+    kp.setPlayerWin(Player.You, Hand.Hand3, Player.Opposite)
     assertTrue(kp.isAllPlayersPlaceSet(Hand.Hand3))
     assertArrayEquals(kp.round.playerRound.map { it.totalscore}.toTypedArray(), arrayOf(3,-3))
   }
