@@ -74,7 +74,7 @@
         android:id="@+id/hand1Left_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/one" />
+        android:text="@string/you" />
 
       <CheckBox
         android:id="@+id/hand1Left_2"
@@ -111,7 +111,7 @@
         android:id="@+id/hand1Opposite_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/one" />
+        android:text="@string/you" />
 
       <CheckBox
         android:id="@+id/hand1Opposite_2"
@@ -148,7 +148,7 @@
         android:id="@+id/hand1Right_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/one" />
+        android:text="@string/you" />
 
       <CheckBox
         android:id="@+id/hand1Right_2"

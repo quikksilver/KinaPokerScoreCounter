@@ -16,12 +16,18 @@ class BonusChooser(val hand: Hand, val bonus:BonusType, private val checkBox: Ar
 
     // Observer number of players
     kinaPokerViewModel.kinaPoker.observe(life) {
-      Player.values().forEach {
-        checkBox[it.index(kinaPokerViewModel!!.numberOfPlayer!!.value!!)].visibility =
-          if (kinaPokerViewModel.kinaPoker.value?.isPlayerPlaying(it) == true) {
-            if (kinaPokerViewModel.kinaPoker.value?.getPlayerPlayType(it) == PlayType.Play) {
+      println("Debug" + checkBox.size)
+      arrayOf(
+        0 to Player.You,
+        1 to Player.Left,
+        2 to Player.Opposite,
+        3 to Player.Right).forEach {
+
+        checkBox[it.first].visibility =
+          if (kinaPokerViewModel.kinaPoker.value?.isPlayerPlaying(it.second) == true) {
+            if (kinaPokerViewModel.kinaPoker.value?.getPlayerPlayType(it.second) == PlayType.Play) {
               // Special case TODO move
-              if (bonus == BonusType.Win && player != null && it == player) {
+              if (bonus == BonusType.Win && player != null && it.second == player) {
                 View.INVISIBLE
               } else {
                 View.VISIBLE

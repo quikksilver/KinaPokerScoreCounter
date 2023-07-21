@@ -28,7 +28,7 @@ class Hand2Fragment() : Fragment() {
   // onDestroyView.
   private val binding get() = _binding!!
 
-  private val placeChoosers: MutableList<PlaceChooser> = mutableListOf<PlaceChooser>()
+  private val placeChoosers: MutableList<BonusChooser> = mutableListOf<BonusChooser>()
   override fun onCreateView(
     inflater: LayoutInflater,
     container: ViewGroup?,
@@ -43,63 +43,59 @@ class Hand2Fragment() : Fragment() {
     val root: View = binding.root
 
     // Add places
-    placeChoosers.add(PlaceChooser(
-      binding.hand1YouRadio,
-      Player.You,
+    placeChoosers.add(BonusChooser(
       hand,
-      kinaPokerViewModel,
+      BonusType.Win,
       arrayOf(binding.hand1You1, binding.hand1You2, binding.hand1You3, binding.hand1You4),
       viewLifecycleOwner,
-      binding.hand1You
-    ))
-    placeChoosers.add(PlaceChooser(
-      binding.hand1LeftRadio,
-      Player.Left,
-      hand,
       kinaPokerViewModel,
+      Player.You,
+    ))
+    placeChoosers.add(BonusChooser(
+      hand,
+      BonusType.Win,
       arrayOf(binding.hand1Left1, binding.hand1Left2,binding.hand1Left3, binding.hand1Left4 ),
       viewLifecycleOwner,
-      binding.hand1Left
-    ))
-    placeChoosers.add(PlaceChooser(
-      binding.hand1OppositeRadio,
-      Player.Opposite,
-      hand,
       kinaPokerViewModel,
+      Player.Left
+    ))
+    placeChoosers.add(BonusChooser(
+      hand,
+      BonusType.Win,
       arrayOf(binding.hand1Opposite1, binding.hand1Opposite2,binding.hand1Opposite3, binding.hand1Opposite4 ) ,
       viewLifecycleOwner,
-      binding.hand1Opposite
-    ))
-    placeChoosers.add(PlaceChooser(
-      binding.hand1RightRadio,
-      Player.Right,
-      hand,
       kinaPokerViewModel,
+      Player.Opposite
+    ))
+    placeChoosers.add(BonusChooser(
+      hand,
+      BonusType.Win,
       arrayOf(binding.hand1Right1, binding.hand1Right2,binding.hand1Right3, binding.hand1Right4 ),
       viewLifecycleOwner,
-      binding.hand1Right
+      kinaPokerViewModel,
+      Player.Right
     ))
     // Add Bonus Full-house
-    val bonusChooserFullHause = BonusChooser(
+    placeChoosers.add(BonusChooser(
       hand,
       BonusType.FullHouse,
       arrayOf(binding.fullhouseYou, binding.fullhouseLeft, binding.fullhouseOpposite, binding.fullhouseRight),
       viewLifecycleOwner,
-      kinaPokerViewModel)
+      kinaPokerViewModel))
 
-    val bonusChooserFour = BonusChooser(
+    placeChoosers.add(BonusChooser(
       hand,
       BonusType.FourOfAKind,
       arrayOf(binding.fourofakindYou, binding.fourofakindLeft, binding.fourofakindOpposite, binding.fourofakindRight),
       viewLifecycleOwner,
-      kinaPokerViewModel)
+      kinaPokerViewModel))
 
-    val bonusChoosersf = BonusChooser(
+    placeChoosers.add(BonusChooser(
       hand,
       BonusType.StraightFlush,
       arrayOf(binding.straightflushYou, binding.straightflushLeft, binding.straightflushOpposite, binding.straightflushRight),
       viewLifecycleOwner,
-      kinaPokerViewModel)
+      kinaPokerViewModel))
 
     // Total score
     val scoreShower = ScoreShower(binding.totalScore, viewLifecycleOwner, kinaPokerViewModel)
@@ -108,13 +104,13 @@ class Hand2Fragment() : Fragment() {
     kinaPokerViewModel.isHand2Done.observe(viewLifecycleOwner) {
       nextButton.isEnabled = it
     }
-    nextButton.setOnClickListener(View.OnClickListener {
+    nextButton.setOnClickListener {
 
       val navController = findNavController();
       navController.popBackStack()
       navController.navigate(R.id.nav_hand3)
 
-    })
+    }
 
     return root
   }
