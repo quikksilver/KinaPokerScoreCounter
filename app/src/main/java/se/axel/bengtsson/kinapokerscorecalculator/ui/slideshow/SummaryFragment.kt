@@ -30,39 +30,45 @@ class SummaryFragment : Fragment() {
 
         _binding = FragmentSummaryBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
       kinaPokerViewModel.score.observe(viewLifecycleOwner) { it ->
         if (it != null) {
           val summary = StringBuilder()
+          summary.append(" ".repeat(3))
           var bonusSizeHand1 = 0;
           var bonusSizeHand2 = 0;
           var bonusSizeHand3 = 0;
           kinaPokerViewModel.kinaPoker.value!!.round.playerRound.forEach {
-            summary.append(it.player.toString() + "       ")
+            summary.append(it.player.toString() + " ".repeat(15))
             bonusSizeHand1 = Math.max(bonusSizeHand1, it.getBonus().filter { it.third == Hand.Hand1 }.size)
             bonusSizeHand2 = Math.max(bonusSizeHand2, it.getBonus().filter { it.third == Hand.Hand2 }.size)
             bonusSizeHand3 = Math.max(bonusSizeHand3, it.getBonus().filter { it.third == Hand.Hand3 }.size)
           }
           summary.append("\nHand 1 (3 cards)\n")
           for (i in 0..bonusSizeHand1) {
+            summary.append(" ".repeat(3))
             kinaPokerViewModel.kinaPoker.value!!.round.playerRound.forEach {
-              summary.append(hand(i, it, Hand.Hand1))
+              val bonusString = hand(i, it, Hand.Hand1)
+              summary.append(bonusString + " ".repeat(if (20 - bonusString.length  < 0) {0} else {20 - bonusString.length}))
             }
             summary.append("\n")
           }
 
           summary.append("Hand 2 (5 cards)\n")
           for (i in 0..bonusSizeHand2) {
+            summary.append(" ".repeat(3))
             kinaPokerViewModel.kinaPoker.value!!.round.playerRound.forEach {
-              summary.append(hand(i, it, Hand.Hand2))
+              val bonusString = hand(i, it, Hand.Hand2)
+              summary.append(bonusString + " ".repeat(if (20 - bonusString.length  < 0) {0} else {20 - bonusString.length}))
             }
             summary.append("\n")
           }
 
           summary.append("Hand 1 (5 cards)\n")
           for (i in 0..bonusSizeHand3) {
+            summary.append(" ".repeat(3))
             kinaPokerViewModel.kinaPoker.value!!.round.playerRound.forEach {
-              summary.append(hand(i, it, Hand.Hand3))
+              val bonusString = hand(i, it, Hand.Hand3)
+              summary.append(bonusString + " ".repeat(if (20 - bonusString.length  < 0) {0} else {20 - bonusString.length}))
             }
             summary.append("\n")
           }
