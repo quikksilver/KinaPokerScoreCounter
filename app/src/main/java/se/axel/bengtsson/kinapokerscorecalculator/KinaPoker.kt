@@ -25,9 +25,9 @@ class KinaPoker(numberOfPlayers: Int): KinapokerInterface {
           .filter(if ( p.playType == PlayType.NotPlay) {filterAllExceptSelf} else {filterAllExceptSelfAndPlaying})
           .forEach { p2 ->
             // Add Bonus to it self
-            p.bonus.add((Triple(p.player, p.playType!!.bonusType, Hand.PlayType)))
+            p.bonus.add((Triple(p.player, p.playType!!.bonusType, Hand.Other)))
             // Add Negative bonus to other player
-            p2.bonus.add((Triple(p.player, p.playType!!.bonusType, Hand.PlayType)))
+            p2.bonus.add((Triple(p.player, p.playType!!.bonusType, Hand.Other)))
           }
       }
       calcScore()
@@ -39,21 +39,62 @@ class KinaPoker(numberOfPlayers: Int): KinapokerInterface {
   }
 
   override fun setPlayerWin(player: Player, hand: Hand, loser: Player) {
+    println("SetPlayerWin")
     val bonusType = BonusType.Win
     if (player != loser) {
       round.playerRound[player.index(numberOfPlayers)].bonus.add(Triple(player, bonusType, hand))
       round.playerRound[loser.index(numberOfPlayers)].bonus.add(Triple(player, bonusType, hand))
     }
+    if (isAllPlayersPlaceSet(Hand.Hand1)
+      && isAllPlayersPlaceSet(Hand.Hand2)
+      && isAllPlayersPlaceSet(Hand.Hand3)) {
+      calcScoop()
+    } else {
+      removeScoop()
+    }
     calcScore()
   }
 
   override fun removePlayerWin(player: Player, hand: Hand, loser: Player) {
+    println("removePlayerWin")
     val bonusType = BonusType.Win
     if (player != loser) {
       round.playerRound[player.index(numberOfPlayers)].bonus.remove(Triple(player, bonusType, hand))
       round.playerRound[loser.index(numberOfPlayers)].bonus.remove(Triple(player, bonusType, hand))
     }
+    if (isAllPlayersPlaceSet(Hand.Hand1)
+      && isAllPlayersPlaceSet(Hand.Hand2)
+      && isAllPlayersPlaceSet(Hand.Hand3)) {
+      calcScoop()
+    } else {
+      removeScoop()
+    }
     calcScore()
+  }
+  private fun calcScoop() {
+    println("calcScoop")
+    round.playerRound.filter { it.playType ==  PlayType.Play }
+        .forEach { playerRound ->
+      var p = mutableListOf(0, 0, 0, 0)
+      playerRound.bonus.filter { it.second == BonusType.Win && it.first != playerRound.player}
+        .forEach {
+          p[it.first.index(numberOfPlayers)]++
+        }
+      println(p)
+      Player.values().forEach {
+        if (p[it.index(numberOfPlayers)] == 3) { // Three hands
+          round.playerRound[it.index(numberOfPlayers)].bonus.add(Triple(it, BonusType.ScoopUp, Hand.Other))
+          // Take bonus
+          playerRound.bonus.add((Triple(it, BonusType.ScoopUp, Hand.Other)))
+        }
+      }
+    }
+  }
+  private fun removeScoop() {
+    println("removeScoop")
+    round.playerRound.filter { it.playType ==  PlayType.Play }.forEach { playerRound ->
+      playerRound.bonus.removeAll { it.second == BonusType.ScoopUp }
+    }
   }
 
   override fun isAllPlayersPlaceSet(hand: Hand): Boolean {

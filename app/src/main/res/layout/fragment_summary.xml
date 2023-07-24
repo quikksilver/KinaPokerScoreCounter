@@ -8,10 +8,38 @@
   <ScrollView
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      android:weightSum="4">
     <TextView
-        android:id="@+id/text_summary"
+        android:id="@+id/text_summary1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+      android:layout_weight="1"
        />
+      <TextView
+        android:id="@+id/text_summary2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        />
+
+      <TextView
+        android:id="@+id/text_summary3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        />
+
+      <TextView
+        android:id="@+id/text_summary4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        />
+
+    </LinearLayout>
   </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

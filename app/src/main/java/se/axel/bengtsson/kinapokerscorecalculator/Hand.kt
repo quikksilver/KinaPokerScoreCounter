@@ -4,5 +4,5 @@ enum class Hand {
   Hand1,
   Hand2,
   Hand3,
-  PlayType
+  Other
 }
