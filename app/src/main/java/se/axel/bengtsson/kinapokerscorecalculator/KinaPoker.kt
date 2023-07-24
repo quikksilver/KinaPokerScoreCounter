@@ -151,8 +151,8 @@ class KinaPoker(numberOfPlayers: Int): KinapokerInterface {
       throw RuntimeException("Missing information to complete the round")
     }*/
   }
-  fun isPlayerPlaying(player:Player):Boolean {
-    return round.playerRound.any { it.player == player }
+  fun isPlayerInTheRound(player:Player):Boolean {
+    return player.isPlaying(numberOfPlayers)
   }
 
  fun numberOfPlayType(playType: PlayType): Int {
@@ -166,10 +166,10 @@ class KinaPoker(numberOfPlayers: Int): KinapokerInterface {
 
   override fun getRoundScore(): Array<Int> {
     return arrayOf(
-      if (isPlayerPlaying(Player.You)) { round.playerRound[Player.You.index(numberOfPlayers)].totalscore } else {0},
-      if (isPlayerPlaying(Player.Left)) { round.playerRound[Player.Left.index(numberOfPlayers)].totalscore } else {0},
-      if (isPlayerPlaying(Player.Opposite)) { round.playerRound[Player.Opposite.index(numberOfPlayers)].totalscore } else {0},
-      if (isPlayerPlaying(Player.Right)) { round.playerRound[Player.Right.index(numberOfPlayers)].totalscore } else {0}
+      if (isPlayerInTheRound(Player.You)) { round.playerRound[Player.You.index(numberOfPlayers)].totalscore } else {0},
+      if (isPlayerInTheRound(Player.Left)) { round.playerRound[Player.Left.index(numberOfPlayers)].totalscore } else {0},
+      if (isPlayerInTheRound(Player.Opposite)) { round.playerRound[Player.Opposite.index(numberOfPlayers)].totalscore } else {0},
+      if (isPlayerInTheRound(Player.Right)) { round.playerRound[Player.Right.index(numberOfPlayers)].totalscore } else {0}
     )
   }
 

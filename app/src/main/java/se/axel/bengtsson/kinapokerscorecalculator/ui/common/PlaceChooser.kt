@@ -80,7 +80,7 @@ class PlaceChooser(
   }
 
   private fun isVisible(kp: KinaPoker, player:Player): Int {
-    return if (kp != null && kp.isPlayerPlaying(player) && kp.getPlayerPlayType(player) == PlayType.Play) {
+    return if (kp != null && kp.isPlayerInTheRound(player) && kp.getPlayerPlayType(player) == PlayType.Play) {
       View.VISIBLE
     } else {
       View.GONE

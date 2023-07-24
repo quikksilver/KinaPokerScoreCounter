@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import se.axel.bengtsson.kinapokerscorecalculator.KinaPoker
+import se.axel.bengtsson.kinapokerscorecalculator.PlayType
 import se.axel.bengtsson.kinapokerscorecalculator.Player
 import se.axel.bengtsson.kinapokerscorecalculator.databinding.FragmentHomeBinding
 import se.axel.bengtsson.kinapokerscorecalculator.ui.common.ScoreShower
@@ -68,6 +69,12 @@ class HomeFragment : Fragment() {
           kinaPokerViewModel.setNumberOfPlayer(4)
         }
       }
+      // Set default all to playing
+      Player.values().filter { kinaPokerViewModel.kinaPoker.value?.isPlayerInTheRound(it) == true }
+        .forEach {
+          kinaPokerViewModel.kinaPoker.value?.setPlayersPlayType(it, PlayType.Play)
+        }
+      kinaPokerViewModel.updateModel()
     }
     val radioButtons = arrayOf(binding.one, binding.two, binding.three, binding.four)
     // Set text
@@ -136,7 +143,7 @@ class HomeFragment : Fragment() {
   }
 
   private fun isVisible(kp: KinaPoker, player:Player): Int {
-    return if (kp != null && kp.isPlayerPlaying(player)) {
+    return if (kp != null && kp.isPlayerInTheRound(player)) {
       VISIBLE
     } else {
       GONE

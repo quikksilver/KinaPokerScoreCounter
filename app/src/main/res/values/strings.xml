@@ -25,7 +25,6 @@
 
 
   <string-array name="game_type">
-    <item>Please select</item>
     <item>Play</item>
     <item>Not Play</item>
     <item>Automatic</item>

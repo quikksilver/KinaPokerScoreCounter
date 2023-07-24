@@ -55,7 +55,7 @@ class PlayTypeSpinner(val player: Player,
         )
       )
     if (kinaPokerViewModel.kinaPoker.value != null && id.toInt() != 0) {
-      if (kinaPokerViewModel.kinaPoker.value?.isPlayerPlaying(player) == true) {
+      if (kinaPokerViewModel.kinaPoker.value?.isPlayerInTheRound(player) == true) {
         kinaPokerViewModel.kinaPoker.value?.setPlayersPlayType(player, playTypeArray[id.toInt() - 1])
         kinaPokerViewModel.updateModel();
       }
@@ -65,7 +65,7 @@ class PlayTypeSpinner(val player: Player,
   fun reset() {
     spinner.setSelection(0)
     if (kinaPokerViewModel.kinaPoker.value != null) {
-      if (kinaPokerViewModel.kinaPoker.value?.isPlayerPlaying(player) == true) {
+      if (kinaPokerViewModel.kinaPoker.value?.isPlayerInTheRound(player) == true) {
         kinaPokerViewModel.kinaPoker.value?.setPlayersPlayType(player, playTypeArray[0])
         kinaPokerViewModel.updateModel();
       }
