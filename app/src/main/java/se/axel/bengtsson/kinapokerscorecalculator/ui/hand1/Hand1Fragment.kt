@@ -15,11 +15,10 @@ import se.axel.bengtsson.kinapokerscorecalculator.Player
 import se.axel.bengtsson.kinapokerscorecalculator.R
 import se.axel.bengtsson.kinapokerscorecalculator.databinding.FragmentHand1Binding
 import se.axel.bengtsson.kinapokerscorecalculator.ui.common.BonusChooser
-import se.axel.bengtsson.kinapokerscorecalculator.ui.common.PlaceChooser
 import se.axel.bengtsson.kinapokerscorecalculator.ui.common.ScoreShower
 import se.axel.bengtsson.kinapokerscorecalculator.ui.home.KinaPokerViewModel
 
-class Hand1Fragment() : Fragment() {
+class Hand1Fragment : Fragment() {
   private val hand: Hand = Hand.Hand1
   private var _binding: FragmentHand1Binding? = null
 
@@ -27,7 +26,9 @@ class Hand1Fragment() : Fragment() {
   // onDestroyView.
   private val binding get() = _binding!!
 
-  private val placeChoosers: MutableList<BonusChooser> = mutableListOf<BonusChooser>()
+  private val placeChoosers: MutableList<BonusChooser> = mutableListOf()
+  private lateinit var scoreShower: ScoreShower
+
   override fun onCreateView(
     inflater: LayoutInflater,
     container: ViewGroup?,
@@ -83,19 +84,17 @@ class Hand1Fragment() : Fragment() {
       viewLifecycleOwner,
       kinaPokerViewModel))
     // Total score
-    val scoreShower = ScoreShower(binding.totalScore, viewLifecycleOwner, kinaPokerViewModel)
+    scoreShower = ScoreShower(binding.totalScore, viewLifecycleOwner, kinaPokerViewModel)
     // Next Button
     val nextButton: Button = binding.next
     kinaPokerViewModel.isHand1Done.observe(viewLifecycleOwner) {
       nextButton.isEnabled = it
     }
-    nextButton.setOnClickListener(View.OnClickListener {
-
-      val navController = findNavController();
+    nextButton.setOnClickListener {
+      val navController = findNavController()
       navController.popBackStack()
       navController.navigate(R.id.nav_hand2)
-
-    })
+    }
 
     return root
   }

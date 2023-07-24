@@ -2,7 +2,6 @@ package se.axel.bengtsson.kinapokerscorecalculator
 
 import android.os.Bundle
 import android.view.Menu
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -11,9 +10,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.fragment.findNavController
 import se.axel.bengtsson.kinapokerscorecalculator.databinding.ActivityMainBinding
-import se.axel.bengtsson.kinapokerscorecalculator.ui.home.KinaPokerViewModel
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,9 +25,7 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.appBarMain.toolbar)
 
-        binding.appBarMain.fab.setOnClickListener { view ->
-            //Snackbar.make(view, "Stop pressing buttons that is not implemented! :-P", Snackbar.LENGTH_LONG)
-            //    .setAction("Action", null).show()
+        binding.appBarMain.fab.setOnClickListener {
           val navController = findNavController(R.id.nav_host_fragment_content_main)
           navController.popBackStack()
           navController.navigate(R.id.nav_home)

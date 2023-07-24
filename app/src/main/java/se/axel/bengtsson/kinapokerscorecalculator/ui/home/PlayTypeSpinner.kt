@@ -1,6 +1,5 @@
 package se.axel.bengtsson.kinapokerscorecalculator.ui.home
 
-import android.R
 import android.app.Activity
 import android.content.Context
 import android.util.Log
@@ -10,6 +9,7 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import se.axel.bengtsson.kinapokerscorecalculator.PlayType
 import se.axel.bengtsson.kinapokerscorecalculator.Player
+import se.axel.bengtsson.kinapokerscorecalculator.R
 
 /**
  <item>Play</item>
@@ -38,10 +38,10 @@ class PlayTypeSpinner(val player: Player,
     //val gameType = resources.getStringArray(se.axel.bengtsson.kinapokerscorecalculator.R.array.game_type)
     val adapter = ArrayAdapter.createFromResource(
       context,
-      se.axel.bengtsson.kinapokerscorecalculator.R.array.game_type, R.layout.simple_spinner_item
+      R.array.game_type, android.R.layout.simple_spinner_item
     )
     // Specify the layout to use when the list of choices appears
-    adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
+    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
     // Apply the adapter to the spinner
     spinner.adapter = adapter
     spinner.onItemSelectedListener = this
@@ -57,7 +57,7 @@ class PlayTypeSpinner(val player: Player,
     if (kinaPokerViewModel.kinaPoker.value != null ) {
       if (kinaPokerViewModel.kinaPoker.value?.isPlayerInTheRound(player) == true) {
         kinaPokerViewModel.kinaPoker.value?.setPlayersPlayType(player, playTypeArray[id.toInt()])
-        kinaPokerViewModel.updateModel();
+        kinaPokerViewModel.updateModel()
       }
     }
   }
@@ -67,12 +67,12 @@ class PlayTypeSpinner(val player: Player,
     if (kinaPokerViewModel.kinaPoker.value != null) {
       if (kinaPokerViewModel.kinaPoker.value?.isPlayerInTheRound(player) == true) {
         kinaPokerViewModel.kinaPoker.value?.setPlayersPlayType(player, playTypeArray[0])
-        kinaPokerViewModel.updateModel();
+        kinaPokerViewModel.updateModel()
       }
     }
   }
   override fun onNothingSelected(parent: AdapterView<*>?) {
-    kinaPokerViewModel.updateModel();
+    kinaPokerViewModel.updateModel()
   }
 }
 
