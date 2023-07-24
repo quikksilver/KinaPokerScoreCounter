@@ -137,16 +137,19 @@ class KinaPoker(numberOfPlayers: Int): KinapokerInterface {
   // UTILS
 
   override fun isRoundComplete():Boolean {
-    return isAllPlayersPlaceSet(Hand.Hand3) && isAllPlayersPlaceSet(Hand.Hand2) && isAllPlayersPlaceSet(Hand.Hand1)
+    TODO("Not yet implemented")
+    //return isAllPlayersPlaceSet(Hand.Hand3) && isAllPlayersPlaceSet(Hand.Hand2) && isAllPlayersPlaceSet(Hand.Hand1)
+
   }
 
   override fun setRoundComplete() {
-    if (isRoundComplete() && isAllPlayersPlayTypeSet()) {
+    TODO("Not yet implemented")
+    /*if (isRoundComplete() && isAllPlayersPlayTypeSet()) {
       // Handle scope...
       TODO("Not yet implemented")
     } else {
       throw RuntimeException("Missing information to complete the round")
-    }
+    }*/
   }
   fun isPlayerPlaying(player:Player):Boolean {
     return round.playerRound.any { it.player == player }
@@ -176,6 +179,14 @@ class KinaPoker(numberOfPlayers: Int): KinapokerInterface {
     } else {
       throw RuntimeException("Should not be here")
     }
+  }
+
+  override fun getPlayerIndex(player: Player): Int {
+    return player.index(numberOfPlayers)
+  }
+
+  override fun getPlayerBonus(player: Player): Array<Triple<Player, BonusType, Hand>> {
+    return round.playerRound[player.index(numberOfPlayers)].bonus.toTypedArray();
   }
 
 

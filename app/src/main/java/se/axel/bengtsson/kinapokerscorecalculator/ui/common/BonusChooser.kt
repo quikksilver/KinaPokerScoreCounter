@@ -12,6 +12,7 @@ import se.axel.bengtsson.kinapokerscorecalculator.Player
 import se.axel.bengtsson.kinapokerscorecalculator.ui.home.KinaPokerViewModel
 
 class BonusChooser(val hand: Hand, val bonus:BonusType, private val checkBox: Array<CheckBox>, life: LifecycleOwner, private val kinaPokerViewModel:KinaPokerViewModel, private val player:Player? = null) {
+  private var default:Array<Int> = arrayOf()
   init {
 
     // Observer number of players
@@ -50,7 +51,12 @@ class BonusChooser(val hand: Hand, val bonus:BonusType, private val checkBox: Ar
         }
       }
       // Special case end
+      // Set Default
+      default = checkBox.map { it.visibility }.toTypedArray()
     }
+
+
+    // Set listener on each checkbox
     checkBox.forEach {
       it.setOnClickListener { view ->
 
@@ -79,6 +85,27 @@ class BonusChooser(val hand: Hand, val bonus:BonusType, private val checkBox: Ar
             }
           }
           kinaPokerViewModel.updateModel()
+        }
+      }
+    }
+    // Set listener for Win (remove checkbox that cannot exist)
+    if (bonus == BonusType.Win && player != null) {
+      kinaPokerViewModel.score.observe(life) {
+        // 1) Set default
+        Log.d("kpsc", "Default  ${default[0]}, ${default[1]}, ${default[2]}, ${default[3]}")
+        checkBox[0].visibility = default[0]
+        checkBox[1].visibility = default[1]
+        checkBox[2].visibility = default[2]
+        checkBox[3].visibility = default[3]
+        // 2) Remove pressed
+        kinaPokerViewModel.kinaPoker.value?.getPlayerBonus(player)
+          ?.filter { it.second == BonusType.Win && it.first != player && it.third == hand }!!.forEach {
+          when(it.first) {
+            Player.You -> checkBox[0].visibility = View.INVISIBLE
+            Player.Left -> checkBox[1].visibility = View.INVISIBLE
+            Player.Opposite -> checkBox[2].visibility = View.INVISIBLE
+            Player.Right -> checkBox[3].visibility = View.INVISIBLE
+          }
         }
       }
     }
