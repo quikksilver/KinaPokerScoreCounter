@@ -4,7 +4,6 @@ import org.junit.Test
 
 import org.junit.Assert.*
 import se.axel.bengtsson.kinapokerscorecalculator.*
-import java.nio.file.WatchEvent.Kind
 
 /**
  */
@@ -23,13 +22,13 @@ class KinaPokerBonusTest {
     assertArrayEquals(kp.round.playerRound.map { it.playType }.toTypedArray(), arrayOf(PlayType.Play, PlayType.Play, PlayType.Play, PlayType.Play))
     assertArrayEquals(kp.round.playerRound.map { it.totalscore}.toTypedArray(), arrayOf(0,0,0,0))
     assertTrue(kp.isAllPlayersPlayTypeSet())
-    kp.setPlayersBonus(Player.You, Hand.Hand1, BonusType.Kind);
+    kp.setPlayersBonus(Player.You, Hand.Hand1, BonusType.Kind)
     assertArrayEquals(kp.round.playerRound.map { it.totalscore}.toTypedArray(), arrayOf(9,-3,-3,-3))
-    kp.setPlayersBonus(Player.Left, Hand.Hand1, BonusType.Kind);
+    kp.setPlayersBonus(Player.Left, Hand.Hand1, BonusType.Kind)
     assertArrayEquals(kp.round.playerRound.map { it.totalscore}.toTypedArray(), arrayOf(6,6,-6,-6))
-    kp.removePlayersBonus(Player.Left, Hand.Hand1, BonusType.Kind);
+    kp.removePlayersBonus(Player.Left, Hand.Hand1, BonusType.Kind)
     assertArrayEquals(kp.round.playerRound.map { it.totalscore}.toTypedArray(), arrayOf(9,-3,-3,-3))
-    kp.removePlayersBonus(Player.You, Hand.Hand1, BonusType.Kind);
+    kp.removePlayersBonus(Player.You, Hand.Hand1, BonusType.Kind)
     assertArrayEquals(kp.round.playerRound.map { it.totalscore}.toTypedArray(), arrayOf(0,0,0,0))
   }
 

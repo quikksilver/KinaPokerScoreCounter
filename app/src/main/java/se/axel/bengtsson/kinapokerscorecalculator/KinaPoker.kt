@@ -75,13 +75,13 @@ class KinaPoker(numberOfPlayers: Int): KinapokerInterface {
     println("calcScoop")
     round.playerRound.filter { it.playType ==  PlayType.Play }
         .forEach { playerRound ->
-      var p = mutableListOf(0, 0, 0, 0)
+      val p = mutableListOf(0, 0, 0, 0)
       playerRound.bonus.filter { it.second == BonusType.Win && it.first != playerRound.player}
         .forEach {
           p[it.first.index(numberOfPlayers)]++
         }
       println(p)
-      Player.values().forEach {
+      Player.values().filter { it.isPlaying(numberOfPlayers)}.forEach {
         if (p[it.index(numberOfPlayers)] == 3) { // Three hands
           round.playerRound[it.index(numberOfPlayers)].bonus.add(Triple(it, BonusType.ScoopUp, Hand.Other))
           // Take bonus
@@ -135,41 +135,21 @@ class KinaPoker(numberOfPlayers: Int): KinapokerInterface {
   }
 
   // UTILS
-
-  override fun isRoundComplete():Boolean {
-    TODO("Not yet implemented")
-    //return isAllPlayersPlaceSet(Hand.Hand3) && isAllPlayersPlaceSet(Hand.Hand2) && isAllPlayersPlaceSet(Hand.Hand1)
-
+  fun isPlayerInTheRound(player:Player):Boolean {
+    return player.isPlaying(numberOfPlayers)
   }
 
-  override fun setRoundComplete() {
-    TODO("Not yet implemented")
-    /*if (isRoundComplete() && isAllPlayersPlayTypeSet()) {
-      // Handle scope...
-      TODO("Not yet implemented")
-    } else {
-      throw RuntimeException("Missing information to complete the round")
-    }*/
-  }
-  fun isPlayerPlaying(player:Player):Boolean {
-    return round.playerRound.any { it.player == player }
-  }
-
- fun numberOfPlayType(playType: PlayType): Int {
+ private fun numberOfPlayType(playType: PlayType): Int {
    val filterType:(PlayerRound)->Boolean = { pr -> pr.playType == playType }
    return round.playerRound.filter(filterType).size
  }
 
-  override fun setRound(round: Round): Array<Player> {
-    TODO("Not yet implemented")
-  }
-
   override fun getRoundScore(): Array<Int> {
     return arrayOf(
-      if (isPlayerPlaying(Player.You)) { round.playerRound[Player.You.index(numberOfPlayers)].totalscore } else {0},
-      if (isPlayerPlaying(Player.Left)) { round.playerRound[Player.Left.index(numberOfPlayers)].totalscore } else {0},
-      if (isPlayerPlaying(Player.Opposite)) { round.playerRound[Player.Opposite.index(numberOfPlayers)].totalscore } else {0},
-      if (isPlayerPlaying(Player.Right)) { round.playerRound[Player.Right.index(numberOfPlayers)].totalscore } else {0}
+      if (isPlayerInTheRound(Player.You)) { round.playerRound[Player.You.index(numberOfPlayers)].totalscore } else {0},
+      if (isPlayerInTheRound(Player.Left)) { round.playerRound[Player.Left.index(numberOfPlayers)].totalscore } else {0},
+      if (isPlayerInTheRound(Player.Opposite)) { round.playerRound[Player.Opposite.index(numberOfPlayers)].totalscore } else {0},
+      if (isPlayerInTheRound(Player.Right)) { round.playerRound[Player.Right.index(numberOfPlayers)].totalscore } else {0}
     )
   }
 
@@ -186,7 +166,11 @@ class KinaPoker(numberOfPlayers: Int): KinapokerInterface {
   }
 
   override fun getPlayerBonus(player: Player): Array<Triple<Player, BonusType, Hand>> {
-    return round.playerRound[player.index(numberOfPlayers)].bonus.toTypedArray();
+    return if (player.isPlaying(numberOfPlayers)) {
+      round.playerRound[player.index(numberOfPlayers)].bonus.toTypedArray()
+    } else {
+      arrayOf()
+    }
   }
 
 
@@ -217,17 +201,5 @@ class KinaPoker(numberOfPlayers: Int): KinapokerInterface {
         .map { it.second.points }
         .fold(0) {acc , b -> acc + b * -1}
     }
-    //Place
-    /*val numberThatPlay = round.playerRound
-      .filter { it.playType == PlayType.Play }.size
-    arrayOf(Hand.Hand1, Hand.Hand2, Hand.Hand3)
-      .filter { isAllPlayersPlaceSet(it) }
-      .forEach { hand ->
-        round.playerRound
-          .filter { it.playType == PlayType.Play }
-          .forEach { player ->
-            player.totalscore += PlaceScore.placePoints[numberThatPlay - 1][player.hands[hand]!! - 1]
-          }
-      }*/
   }
 }

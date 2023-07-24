@@ -1,15 +1,14 @@
 <resources>
     <string name="app_name">KinapokerScoreCalculator</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">KinaPoker</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+
+
 
 
   <!-- From old -->
@@ -25,7 +24,6 @@
 
 
   <string-array name="game_type">
-    <item>Please select</item>
     <item>Play</item>
     <item>Not Play</item>
     <item>Automatic</item>
@@ -34,6 +32,7 @@
   </string-array>
 
   <string name="bonus">Bonus:</string>
+  <string name="reset">Reset</string>
   <!-- Winner text box -->
   <string name="w_you">You win over:</string>
   <string name="w_left">Left win over:</string>
@@ -51,14 +50,13 @@
   <string name="hand3">Hand three(5 cards)</string>
   <string name="summary">Summary</string>
 
-  <string name="sum_text">Sum:</string>
-  <string name="zero">0</string>
+
+
   <string name="kind">Kind:</string>
   <string name="you2">you</string>
   <string name="fullhouse">Full House:</string>
   <string name="fourofakind">Four of a kind:</string>
   <string name="straightflush">Straight Flush:</string>
-  <string name="scoopup_is">Is Scooping Up:</string>
-  <string name="scoopup_by">Been Scooped Up by:</string>
+
 
 </resources>

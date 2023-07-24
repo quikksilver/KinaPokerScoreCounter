@@ -25,7 +25,7 @@ class BonusChooser(val hand: Hand, val bonus:BonusType, private val checkBox: Ar
         3 to Player.Right).forEach {
 
         checkBox[it.first].visibility =
-          if (kinaPokerViewModel.kinaPoker.value?.isPlayerPlaying(it.second) == true) {
+          if (kinaPokerViewModel.kinaPoker.value?.isPlayerInTheRound(it.second) == true) {
             if (kinaPokerViewModel.kinaPoker.value?.getPlayerPlayType(it.second) == PlayType.Play) {
               // Special case TODO move
               if (bonus == BonusType.Win && player != null && it.second == player) {
@@ -45,7 +45,7 @@ class BonusChooser(val hand: Hand, val bonus:BonusType, private val checkBox: Ar
 
       // Special case (TODO should be moved), notplaying and bonus in Win
       if (bonus == BonusType.Win && player != null) {
-        if (!(kinaPokerViewModel.kinaPoker.value?.isPlayerPlaying(player) == true
+        if (!(kinaPokerViewModel.kinaPoker.value?.isPlayerInTheRound(player) == true
           && kinaPokerViewModel.kinaPoker.value?.getPlayerPlayType(player) == PlayType.Play)) {
           checkBox.forEach { it.visibility = View.INVISIBLE }
         }
@@ -68,7 +68,7 @@ class BonusChooser(val hand: Hand, val bonus:BonusType, private val checkBox: Ar
           else -> { Pair(Player.You, false) }
         }
         Log.d("kpsc", "Bonus chooser: " + playerPair + " " + view.id)
-        if (kinaPokerViewModel.kinaPoker.value?.isPlayerPlaying(playerPair.first) == true) {
+        if (kinaPokerViewModel.kinaPoker.value?.isPlayerInTheRound(playerPair.first) == true) {
           if (playerPair.second) {
             Log.d("kpsc", "Bonus chooser: ${playerPair.first}  adding bonus $bonus")
             if (bonus == BonusType.Win && player != null) {

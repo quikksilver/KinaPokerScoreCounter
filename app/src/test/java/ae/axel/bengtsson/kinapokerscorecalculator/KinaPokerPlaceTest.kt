@@ -4,7 +4,7 @@ import org.junit.Test
 
 import org.junit.Assert.*
 import se.axel.bengtsson.kinapokerscorecalculator.*
-import java.nio.file.WatchEvent.Kind
+
 
 /**
  */

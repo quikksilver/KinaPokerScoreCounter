@@ -14,19 +14,21 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import se.axel.bengtsson.kinapokerscorecalculator.KinaPoker
+import se.axel.bengtsson.kinapokerscorecalculator.PlayType
 import se.axel.bengtsson.kinapokerscorecalculator.Player
 import se.axel.bengtsson.kinapokerscorecalculator.databinding.FragmentHomeBinding
 import se.axel.bengtsson.kinapokerscorecalculator.ui.common.ScoreShower
 
 
 class HomeFragment : Fragment() {
-  private val TAG = "kpsc"
+  private val _TAG = "kpsc"
   private var _binding: FragmentHomeBinding? = null
 
   // This property is only valid between onCreateView and
   // onDestroyView.
   private val binding get() = _binding!!
-  private val playTypeSpinners: MutableList<PlayTypeSpinner> = mutableListOf<PlayTypeSpinner>()
+  private val playTypeSpinners: MutableList<PlayTypeSpinner> = mutableListOf()
+  private lateinit var scoreShower: ScoreShower
 
   override fun onCreateView(
     inflater: LayoutInflater,
@@ -46,34 +48,35 @@ class HomeFragment : Fragment() {
     // Set Number of players listner
     val numberOfPlayers = binding.playersRadio
     numberOfPlayers.setOnCheckedChangeListener { group:RadioGroup, checkedId:Int ->
-      Log.d(TAG,
+      Log.d(_TAG,
       "asd $group  ${group.id} ID $checkedId ID ${group.checkedRadioButtonId} R ${se.axel.bengtsson.kinapokerscorecalculator.R.id.four}"
       )
       resetSpinners()
       when (checkedId) {
         se.axel.bengtsson.kinapokerscorecalculator.R.id.one -> {
-          Log.d(TAG, "chose 1 players")
+          Log.d(_TAG, "chose 1 players")
           kinaPokerViewModel.setNumberOfPlayer(1)
         }
         se.axel.bengtsson.kinapokerscorecalculator.R.id.two -> {
-          Log.d(TAG, "chose 2 players")
+          Log.d(_TAG, "chose 2 players")
           kinaPokerViewModel.setNumberOfPlayer(2)
         }
         se.axel.bengtsson.kinapokerscorecalculator.R.id.three -> {
-          Log.d(TAG, "chose 3 players")
+          Log.d(_TAG, "chose 3 players")
           kinaPokerViewModel.setNumberOfPlayer(3)
         }
         se.axel.bengtsson.kinapokerscorecalculator.R.id.four -> {
-          Log.d(TAG, "chose 4 players")
+          Log.d(_TAG, "chose 4 players")
           kinaPokerViewModel.setNumberOfPlayer(4)
         }
       }
+      setDefaultType(kinaPokerViewModel)
     }
     val radioButtons = arrayOf(binding.one, binding.two, binding.three, binding.four)
     // Set text
     val playerText: TextView = binding.players
     kinaPokerViewModel.numberOfPlayer.observe(viewLifecycleOwner) {
-      Log.d("kpsc", "Number of player changed $it")
+      Log.d(_TAG, "Number of player changed $it")
       playerText.text = "Players $it"
       numberOfPlayers.check(radioButtons[it - 1].id)
     }
@@ -115,28 +118,37 @@ class HomeFragment : Fragment() {
       rightSpinner.visibility = isVisible(it, Player.Right)
     }
 
-    val scoreShower = ScoreShower(binding.totalScore, viewLifecycleOwner, kinaPokerViewModel)
+    scoreShower = ScoreShower(binding.totalScore, viewLifecycleOwner, kinaPokerViewModel)
 
     val nextButton: Button = binding.next
     kinaPokerViewModel.isPlayTypeDone.observe(viewLifecycleOwner) {
       nextButton.isEnabled = it
     }
-    nextButton.setOnClickListener(OnClickListener {
+    nextButton.setOnClickListener {
 
-      val navController = findNavController();
+      val navController = findNavController()
       navController.popBackStack()
       navController.navigate(se.axel.bengtsson.kinapokerscorecalculator.R.id.nav_hand1)
 
-    })
+    }
     return root
   }
 
-  fun resetSpinners() {
+  private fun setDefaultType(kinaPokerViewModel: KinaPokerViewModel) {
+    // Set default all to playing
+    Player.values().filter { kinaPokerViewModel.kinaPoker.value?.isPlayerInTheRound(it) == true }
+      .forEach {
+        kinaPokerViewModel.kinaPoker.value?.setPlayersPlayType(it, PlayType.Play)
+      }
+    kinaPokerViewModel.updateModel()
+  }
+
+  private fun resetSpinners() {
     playTypeSpinners.forEach {it.reset()}
   }
 
   private fun isVisible(kp: KinaPoker, player:Player): Int {
-    return if (kp != null && kp.isPlayerPlaying(player)) {
+    return if (kp.isPlayerInTheRound(player)) {
       VISIBLE
     } else {
       GONE
@@ -149,5 +161,11 @@ class HomeFragment : Fragment() {
      _binding = null
   }
 
-  //fun onSelectPlayersButtonClicked(view: View) {}
+  override fun onResume() {
+    super.onResume()
+    val kinaPokerViewModel: KinaPokerViewModel by activityViewModels()
+    kinaPokerViewModel.setNumberOfPlayer(4)
+    setDefaultType(kinaPokerViewModel)
+    resetSpinners()
+  }
 }

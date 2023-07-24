@@ -39,7 +39,7 @@ class KinaPokerViewModel : ViewModel() {
 
   fun updateModel() {
     Log.d("kpsc", "Before " + _score.value?.get(0)+  " " + _score.value?.get(1) + " "+  _score.value?.get(2) + " " + _score.value?.get(3))
-    _score.value = _kinaPoker.value?.getRoundScore();
+    _score.value = _kinaPoker.value?.getRoundScore()
     Log.d("kpsc", "After " + _score.value?.get(0)+  " " + _score.value?.get(1) + " "+  _score.value?.get(2) + " " + _score.value?.get(3))
     _isPlayTypeDone.value = _kinaPoker.value?.isAllPlayersPlayTypeSet()?.or( false)
     _isHand1Done.value = _kinaPoker.value?.isAllPlayersPlaceSet(Hand.Hand1)?.or(false)

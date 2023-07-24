@@ -11,7 +11,6 @@ import se.axel.bengtsson.kinapokerscorecalculator.Hand
 import se.axel.bengtsson.kinapokerscorecalculator.PlayerRound
 import se.axel.bengtsson.kinapokerscorecalculator.databinding.FragmentSummaryBinding
 import se.axel.bengtsson.kinapokerscorecalculator.ui.home.KinaPokerViewModel
-import kotlin.math.round
 
 class SummaryFragment : Fragment() {
 
@@ -35,16 +34,16 @@ class SummaryFragment : Fragment() {
         if (it != null) {
           val summary = arrayOf(StringBuilder(),StringBuilder(),StringBuilder(),StringBuilder())
           summary.forEach {  it.append(" ".repeat(3))}
-          var bonusSizeHand1 = 0;
-          var bonusSizeHand2 = 0;
-          var bonusSizeHand3 = 0;
+          var bonusSizeHand1 = 0
+          var bonusSizeHand2 = 0
+          var bonusSizeHand3 = 0
           var bonusOther = 0
-          kinaPokerViewModel.kinaPoker.value!!.round.playerRound.forEach {
-            summary[it.player.index(4)].append(it.player.toString())
-            bonusSizeHand1 = Math.max(bonusSizeHand1, it.getBonus().filter { it.third == Hand.Hand1 }.size)
-            bonusSizeHand2 = Math.max(bonusSizeHand2, it.getBonus().filter { it.third == Hand.Hand2 }.size)
-            bonusSizeHand3 = Math.max(bonusSizeHand3, it.getBonus().filter { it.third == Hand.Hand3 }.size)
-            bonusOther = Math.max(bonusOther, it.getBonus().filter { it.third == Hand.Other }.size)
+          kinaPokerViewModel.kinaPoker.value!!.round.playerRound.forEach { round ->
+            summary[round.player.index(4)].append(round.player.toString())
+            bonusSizeHand1 = Math.max(bonusSizeHand1, round.getBonus().filter { it.third == Hand.Hand1 }.size)
+            bonusSizeHand2 = Math.max(bonusSizeHand2, round.getBonus().filter { it.third == Hand.Hand2 }.size)
+            bonusSizeHand3 = Math.max(bonusSizeHand3, round.getBonus().filter { it.third == Hand.Hand3 }.size)
+            bonusOther = Math.max(bonusOther, round.getBonus().filter { it.third == Hand.Other }.size)
           }
           summary[0].append("\nHand 1\n")
           summary[1].append("\n\n")
@@ -55,7 +54,7 @@ class SummaryFragment : Fragment() {
             kinaPokerViewModel.kinaPoker.value!!.round.playerRound.forEach {
               val bonusString = hand(i, it, Hand.Hand1)
               summary[it.player.index(4)].append(bonusString + " ".repeat(if (20 - bonusString.length  < 0) {0} else {20 - bonusString.length}))
-              summary[it.player.index(4)].append("\n");
+              summary[it.player.index(4)].append("\n")
             }
           }
 
@@ -119,12 +118,14 @@ class SummaryFragment : Fragment() {
 
   private fun hand(i:Int, playerRound: PlayerRound, hand:Hand): String {
     return if (i < playerRound.getBonus().filter { it.third == hand }.size) {
-      val bonus = playerRound.getBonus().filter { it.third == hand }[i];
-
-        if (bonus.first == playerRound.player) {
-          "" + bonus.second.points +"("+  bonus.second.short + ")"}
-        else {"" + (bonus.second.points * -1) +"("+  bonus.second.short + " by " + bonus.first.toString().get(0) + ")     " }
-    } else { "-" }
+      val bonus = playerRound.getBonus().filter { it.third == hand }[i]
+      if (bonus.first == playerRound.player) {
+        "" + bonus.second.points +"("+  bonus.second.short + ")"}
+      else {
+        "" + (bonus.second.points * -1) +"("+  bonus.second.short + " by " + bonus.first.toString()[0] + ")     " }
+    } else {
+      "-"
+    }
 
   }
 

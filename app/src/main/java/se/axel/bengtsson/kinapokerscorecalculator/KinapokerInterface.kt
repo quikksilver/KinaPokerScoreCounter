@@ -11,13 +11,6 @@ interface KinapokerInterface {
     fun setPlayersBonus(player: Player, hand: Hand, bonusType: BonusType)
     fun removePlayersBonus(player: Player, hand: Hand, bonusType: BonusType)
 
-
-
-    // Needed ?
-    fun isRoundComplete():Boolean
-    fun setRoundComplete()
-    fun setRound(round: Round): Array<Player>
-
     // Getter
     fun getRoundScore():Array<Int>
     fun getPlayerPlayType(player: Player): PlayType
