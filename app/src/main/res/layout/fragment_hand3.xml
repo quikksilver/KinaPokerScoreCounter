@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.hand1.Hand1Fragment">
+  <ScrollView
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+  <LinearLayout
+    android:id="@+id/hands"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+  <!-- HAND 1 -->
+
+  <View
+    android:id="@+id/line0"
+    android:layout_width="match_parent"
+    android:layout_height="0.75dp"
+    android:background="@android:color/black" />
+<!-- You -->
+  <TextView
+    android:id="@+id/hand1You"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/w_you" />
+
+    <LinearLayout
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+      android:orientation="horizontal" >
+
+    <CheckBox
+      android:id="@+id/hand1You_1"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/you" />
+
+    <CheckBox
+      android:id="@+id/hand1You_2"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/left" />
+
+    <CheckBox
+      android:id="@+id/hand1You_3"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/opposite" />
+
+    <CheckBox
+      android:id="@+id/hand1You_4"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/right" />
+
+    </LinearLayout>
+    <!-- Left -->
+    <TextView
+      android:id="@+id/hand1Left"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/w_left" />
+
+    <LinearLayout
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+      android:orientation="horizontal" >
+
+      <CheckBox
+        android:id="@+id/hand1Left_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/you" />
+
+      <CheckBox
+        android:id="@+id/hand1Left_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/left" />
+
+      <CheckBox
+        android:id="@+id/hand1Left_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/opposite" />
+
+      <CheckBox
+        android:id="@+id/hand1Left_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/right" />
+    </LinearLayout>
+
+    <!-- Opposite -->
+    <TextView
+      android:id="@+id/hand1Opposite"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/w_opposite" />
+
+    <LinearLayout
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+      android:orientation="horizontal" >
+
+      <CheckBox
+        android:id="@+id/hand1Opposite_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/you" />
+
+      <CheckBox
+        android:id="@+id/hand1Opposite_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/left" />
+
+      <CheckBox
+        android:id="@+id/hand1Opposite_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/opposite" />
+
+      <CheckBox
+        android:id="@+id/hand1Opposite_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/right" />
+    </LinearLayout>
+
+    <!-- Right -->
+    <TextView
+      android:id="@+id/hand1Right"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/w_right" />
+
+    <LinearLayout
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+      android:orientation="horizontal" >
+
+      <CheckBox
+        android:id="@+id/hand1Right_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/you" />
+
+      <CheckBox
+        android:id="@+id/hand1Right_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/left" />
+
+      <CheckBox
+        android:id="@+id/hand1Right_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/opposite" />
+
+      <CheckBox
+        android:id="@+id/hand1Right_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/right" />
+    </LinearLayout>
+    <!-- Bonus -->
+    <TextView
+      android:id="@+id/bonus"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/bonus" />
+    <TextView
+      android:id="@+id/fourofakind2"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/fourofakind" />
+
+    <LinearLayout
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+      android:orientation="horizontal" >
+
+      <CheckBox
+        android:id="@+id/fourofakind_you2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/you2" />
+
+      <CheckBox
+        android:id="@+id/fourofakind_left2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/left" />
+
+      <CheckBox
+        android:id="@+id/fourofakind_opposite2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/opposite" />
+
+      <CheckBox
+        android:id="@+id/fourofakind_right2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/right" />
+    </LinearLayout>
+
+    <TextView
+      android:id="@+id/straightflush2"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/straightflush" />
+
+    <LinearLayout
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+      android:orientation="horizontal" >
+
+      <CheckBox
+        android:id="@+id/straightflush_you2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/you2" />
+
+      <CheckBox
+        android:id="@+id/straightflush_left2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/left" />
+
+      <CheckBox
+        android:id="@+id/straightflush_opposite2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/opposite" />
+
+      <CheckBox
+        android:id="@+id/straightflush_right2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/right" />
+    </LinearLayout>
+    <!-- Total score -->
+    <TextView
+      android:id="@+id/totalScore"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      />
+    <Button
+      android:id="@+id/next"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:text="@string/summary"/>
+    </LinearLayout>
+  </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

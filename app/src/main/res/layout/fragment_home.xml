@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.HomeFragment">
+
+  <ScrollView
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <LinearLayout
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical" >
+
+      <TextView
+        android:id="@+id/players"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/players" />
+
+
+      <RadioGroup
+        android:id="@+id/players_radio"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+
+        <RadioButton
+          android:id="@+id/one"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/one" />
+
+        <RadioButton
+          android:id="@+id/two"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/two" />
+
+        <RadioButton
+          android:id="@+id/three"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/three" />
+
+        <RadioButton
+          android:id="@+id/four"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/four" />
+      </RadioGroup>
+
+      <!-- GAME TYPE -->
+
+      <LinearLayout
+        android:id="@+id/gametype"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+          android:id="@+id/you"
+          android:layout_width="wrap_content"
+          android:visibility="gone"
+          android:layout_height="wrap_content"
+          android:text="@string/you" />
+
+        <Spinner
+          android:id="@+id/you_spinner"
+          android:layout_width="fill_parent"
+          android:visibility="gone"
+          android:layout_height="wrap_content" />
+
+        <!-- Opponent 1 -->
+
+        <TextView
+          android:id="@+id/left"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:visibility="gone"
+          android:text="@string/left" />
+
+        <Spinner
+          android:id="@+id/left_spinner"
+          android:layout_width="fill_parent"
+          android:visibility="gone"
+          android:layout_height="wrap_content" />
+        <!-- Opponent 2 -->
+
+        <TextView
+          android:id="@+id/opposite"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:visibility="gone"
+          android:text="@string/opposite" />
+
+        <Spinner
+          android:id="@+id/opposite_spinner"
+          android:layout_width="fill_parent"
+          android:visibility="gone"
+          android:layout_height="wrap_content" />
+        <!-- Opponent 3 -->
+
+        <TextView
+          android:id="@+id/right"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:visibility="gone"
+          android:text="@string/right" />
+
+        <Spinner
+          android:id="@+id/right_spinner"
+          android:layout_width="fill_parent"
+          android:visibility="gone"
+          android:layout_height="wrap_content" />
+      </LinearLayout>
+
+      <TextView
+        android:id="@+id/totalScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+      <Button
+        android:id="@+id/next"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/hand1"/>
+      <!-- Hand layout -->
+
+
+        <!-- HAND 2 -->
+
+                <!-- Bonus 2 -->
+
+
+
+        <!-- HAND 3 -->
+
+
+<!--
+
+      <View
+        android:id="@+id/line3"
+        android:layout_width="match_parent"
+        android:layout_height="0.75dp"
+        android:background="@android:color/black" />
+
+      <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal" >
+
+        <TextView
+          android:id="@+id/scoopup_is"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/scoopup_is" />
+
+        <CheckBox
+          android:id="@+id/scoopup_is_two"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:onClick="onCheckboxClickedIsScooping"
+          android:text="@string/two" />
+
+        <CheckBox
+          android:id="@+id/scoopup_is_three"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:onClick="onCheckboxClickedIsScooping"
+          android:text="@string/three" />
+
+        <CheckBox
+          android:id="@+id/scoopup_is_four"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:onClick="onCheckboxClickedIsScooping"
+          android:text="@string/four" />
+      </LinearLayout>
+
+      <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal" >
+
+        <TextView
+          android:id="@+id/scoopup_by"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/scoopup_by" />
+
+        <CheckBox
+          android:id="@+id/scoopup_by_two"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:onClick="onCheckboxClickedScoopedBy"
+          android:text="@string/two" />
+
+        <CheckBox
+          android:id="@+id/scoopup_by_three"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:onClick="onCheckboxClickedScoopedBy"
+          android:text="@string/three" />
+
+        <CheckBox
+          android:id="@+id/scoopup_by_four"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:onClick="onCheckboxClickedScoopedBy"
+          android:text="@string/four" />
+      </LinearLayout>-->
+      <!-- SUM -->
+<!--
+      <View
+        android:layout_width="match_parent"
+        android:layout_height="0.75dp"
+        android:background="@android:color/black" />
+
+      <TextView
+        android:id="@+id/sum_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sum_text" />
+
+      <TextView
+        android:id="@+id/sum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/zero" /> -->
+    </LinearLayout>
+  </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

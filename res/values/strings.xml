@@ -19,18 +19,18 @@
         <item>Dragon</item>
         <item>Color Dragon</item>
     </string-array>
-    
+
     <string name="opponent_1">Opponent 1:</string>
     <string name="opponent_2">Opponent 2:</string>
     <string name="opponent_3">Opponent 3:</string>
-    
+
     <string name="hand1">Hand one(3) Place:</string>
     <string name="hand2">Hand two(5) Place:</string>
     <string name="hand3">Hand three(5) Place:</string>
-    
+
     <string name="sum_text">Sum:</string>
     <string name="zero">0</string>
-    <string name="kind">Kind:</string>
+    <string name="kind">Three of a Kind:</string>
     <string name="you2">you</string>
     <string name="fullhouse">Full House:</string>
     <string name="fourofakind">Four of a kind:</string>
