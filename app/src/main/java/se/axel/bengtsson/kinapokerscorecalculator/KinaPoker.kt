@@ -186,7 +186,11 @@ class KinaPoker(numberOfPlayers: Int): KinapokerInterface {
   }
 
   override fun getPlayerBonus(player: Player): Array<Triple<Player, BonusType, Hand>> {
-    return round.playerRound[player.index(numberOfPlayers)].bonus.toTypedArray();
+    return if (player.isPlaying(numberOfPlayers)) {
+      round.playerRound[player.index(numberOfPlayers)].bonus.toTypedArray();
+    } else {
+      arrayOf()
+    }
   }
 
 

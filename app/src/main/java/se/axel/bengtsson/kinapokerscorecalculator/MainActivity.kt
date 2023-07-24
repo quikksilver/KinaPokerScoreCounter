@@ -11,8 +11,9 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
-
+import androidx.navigation.fragment.findNavController
 import se.axel.bengtsson.kinapokerscorecalculator.databinding.ActivityMainBinding
+import se.axel.bengtsson.kinapokerscorecalculator.ui.home.KinaPokerViewModel
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,8 +29,11 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.appBarMain.toolbar)
 
         binding.appBarMain.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Stop pressing buttons that is not implemented! :-P", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+            //Snackbar.make(view, "Stop pressing buttons that is not implemented! :-P", Snackbar.LENGTH_LONG)
+            //    .setAction("Action", null).show()
+          val navController = findNavController(R.id.nav_host_fragment_content_main)
+          navController.popBackStack()
+          navController.navigate(R.id.nav_home)
         }
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView

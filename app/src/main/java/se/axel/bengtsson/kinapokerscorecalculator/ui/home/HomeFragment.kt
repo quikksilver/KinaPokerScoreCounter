@@ -69,12 +69,7 @@ class HomeFragment : Fragment() {
           kinaPokerViewModel.setNumberOfPlayer(4)
         }
       }
-      // Set default all to playing
-      Player.values().filter { kinaPokerViewModel.kinaPoker.value?.isPlayerInTheRound(it) == true }
-        .forEach {
-          kinaPokerViewModel.kinaPoker.value?.setPlayersPlayType(it, PlayType.Play)
-        }
-      kinaPokerViewModel.updateModel()
+      setDefaultType(kinaPokerViewModel)
     }
     val radioButtons = arrayOf(binding.one, binding.two, binding.three, binding.four)
     // Set text
@@ -138,6 +133,15 @@ class HomeFragment : Fragment() {
     return root
   }
 
+  private fun setDefaultType(kinaPokerViewModel: KinaPokerViewModel) {
+    // Set default all to playing
+    Player.values().filter { kinaPokerViewModel.kinaPoker.value?.isPlayerInTheRound(it) == true }
+      .forEach {
+        kinaPokerViewModel.kinaPoker.value?.setPlayersPlayType(it, PlayType.Play)
+      }
+    kinaPokerViewModel.updateModel()
+  }
+
   fun resetSpinners() {
     playTypeSpinners.forEach {it.reset()}
   }
@@ -156,5 +160,11 @@ class HomeFragment : Fragment() {
      _binding = null
   }
 
-  //fun onSelectPlayersButtonClicked(view: View) {}
+  override fun onResume() {
+    super.onResume()
+    val kinaPokerViewModel: KinaPokerViewModel by activityViewModels()
+    kinaPokerViewModel.setNumberOfPlayer(4)
+    setDefaultType(kinaPokerViewModel)
+    resetSpinners()
+  }
 }
